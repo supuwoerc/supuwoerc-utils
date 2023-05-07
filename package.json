@@ -1,7 +1,7 @@
 {
-    "name": "rollup-ts-basic-template",
+    "name": "@supuwoerc/utils",
     "version": "1.0.0",
-    "description": "rollup-ts-basic-template",
+    "description": "前端工具方法",
     "main": "dist/index.js",
     "module": "dist/index.js",
     "types": "index.d.ts",
@@ -15,7 +15,8 @@
         "lint": "eslint --ext .ts src --config=.eslintrc.json",
         "lint:fix": "eslint --ext .ts src --fix --config=.eslintrc.json",
         "lint-staged": "lint-staged",
-        "commitlint": "commitlint --config commitlint.config.cjs -e -V"
+        "commitlint": "commitlint --config commitlint.config.cjs -e -V",
+        "publish": "npm publish --access public"
     },
     "lint-staged": {
         "src/**/*.{ts}": "npm run lint"
@@ -31,9 +32,23 @@
         "dist",
         "*.d.ts"
     ],
-    "keywords": [],
-    "author": "https://github.com/supuwoerc",
-    "license": "ISC",
+    "keywords": [
+        "utils",
+        "font-end-utils",
+        "supuwoerc-utils",
+        "typescript",
+        "javascript"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/supuwoerc/invoker-utils.git"
+    },
+    "author": "QiMeng Zhang <zhangzhouou@gmail.com>(https://github.com/supuwoerc)",
+    "homepage": "https://github.com/supuwoerc/invoker-utils.git",
+    "bugs": {
+        "url": "https://github.com/supuwoerc/invoker-utils/issues"
+    },
+    "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.21.8",
         "@commitlint/cli": "^17.6.3",
