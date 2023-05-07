@@ -1,0 +1,64 @@
+{
+    "name": "rollup-ts-basic-template",
+    "version": "1.0.0",
+    "description": "rollup-ts-basic-template",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "index.d.ts",
+    "type": "module",
+    "scripts": {
+        "prepare": "husky install",
+        "build": "rollup -c && npm run doc",
+        "build:tsc": "npx tsc",
+        "dev": "rollup -c --watch",
+        "doc": "typedoc --options typedoc.json",
+        "lint": "eslint --ext .ts src --config=.eslintrc.json",
+        "lint:fix": "eslint --ext .ts src --fix --config=.eslintrc.json",
+        "lint-staged": "lint-staged",
+        "commitlint": "commitlint --config commitlint.config.cjs -e -V"
+    },
+    "lint-staged": {
+        "src/**/*.{ts}": "npm run lint"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/index.esm.js",
+            "require": "./dist/index.common.js",
+            "types": "./index.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "*.d.ts"
+    ],
+    "keywords": [],
+    "author": "https://github.com/supuwoerc",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.21.8",
+        "@commitlint/cli": "^17.6.3",
+        "@commitlint/config-conventional": "^17.6.3",
+        "@rollup/plugin-alias": "^5.0.0",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-commonjs": "^24.1.0",
+        "@rollup/plugin-json": "^6.0.0",
+        "@rollup/plugin-node-resolve": "^15.0.2",
+        "@typescript-eslint/eslint-plugin": "^5.59.2",
+        "@typescript-eslint/parser": "^5.59.2",
+        "esbuild": "^0.17.18",
+        "eslint": "^8.40.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.2.2",
+        "prettier": "^2.8.8",
+        "rollup": "^3.21.5",
+        "rollup-plugin-dts": "^5.3.0",
+        "rollup-plugin-esbuild": "^5.0.0",
+        "rollup-plugin-typescript2": "^0.34.1",
+        "typedoc": "^0.24.6",
+        "typescript": "^5.0.4"
+    }
+}
