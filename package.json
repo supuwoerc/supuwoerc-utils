@@ -16,7 +16,7 @@
         "lint:fix": "eslint --ext .ts src --fix --config=.eslintrc.json",
         "lint-staged": "lint-staged",
         "commitlint": "commitlint --config commitlint.config.cjs -e -V",
-        "publish": "npm publish --access public"
+        "publish:public": "npm publish --access public"
     },
     "lint-staged": {
         "src/**/*.{ts}": "npm run lint"
