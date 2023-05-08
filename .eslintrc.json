@@ -9,10 +9,17 @@
         "no-prototype-builtins": "off",
         "import/prefer-default-export": "off",
         "no-console": "error",
-        "@typescript-eslint/no-explicit-any": ["off"]
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "@typescript-eslint/ban-ts-comment": "off"
     },
     "settings": {
         "import/resolver": {
+            "eslint-import-resolver-custom-alias": {
+                "alias": {
+                    "@": "./src"
+                },
+                "extensions": [".js", ".ts"] //https://github.com/johvin/eslint-import-resolver-alias/issues/16
+            },
             "node": {
                 "extensions": [".js", ".ts"],
                 "moduleDirectory": ["node_modules", "./src"]

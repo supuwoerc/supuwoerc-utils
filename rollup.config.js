@@ -8,7 +8,6 @@ import typescript from 'rollup-plugin-typescript2'
 import babel from '@rollup/plugin-babel'
 import eslint from '@rollup/plugin-eslint'
 const entries = ['src/index.ts']
-
 const plugins = [
     eslint(),
     babel({
@@ -19,7 +18,14 @@ const plugins = [
     resolve({
         preferBuiltins: true,
     }),
-    alias(),
+    alias({
+        entries: [
+            {
+                find: '@',
+                replacement: new URL('./src', import.meta.url).pathname,
+            },
+        ],
+    }),
     json(),
     typescript(),
     commonjs(),
