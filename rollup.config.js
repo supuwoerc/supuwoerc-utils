@@ -1,58 +1,59 @@
-import dts from "rollup-plugin-dts";
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import json from "@rollup/plugin-json";
-import alias from "@rollup/plugin-alias";
-import esbuild from "rollup-plugin-esbuild";
-import typescript from "rollup-plugin-typescript2";
-import babel from "@rollup/plugin-babel";
-
-const entries = ["src/index.ts"];
+import dts from 'rollup-plugin-dts'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import alias from '@rollup/plugin-alias'
+import esbuild from 'rollup-plugin-esbuild'
+import typescript from 'rollup-plugin-typescript2'
+import babel from '@rollup/plugin-babel'
+import eslint from '@rollup/plugin-eslint'
+const entries = ['src/index.ts']
 
 const plugins = [
-  babel({
-    babelrc: false,
-    babelHelpers: "bundled",
-    presets: [["env", { modules: false }]],
-  }),
-  resolve({
-    preferBuiltins: true,
-  }),
-  alias(),
-  json(),
-  typescript(),
-  commonjs(),
-  esbuild(),
-];
+    eslint(),
+    babel({
+        babelrc: false,
+        babelHelpers: 'bundled',
+        presets: [['env', { modules: false }]],
+    }),
+    resolve({
+        preferBuiltins: true,
+    }),
+    alias(),
+    json(),
+    typescript(),
+    commonjs(),
+    esbuild(),
+]
 
 export default [
-  ...entries.map((input) => ({
-    input,
-    output: [
-      {
-        file: input.replace("src/", "dist/").replace(".ts", ".umd.js"),
-        format: "umd",
-        name: "template.min.js",
-      },
-      {
-        file: input.replace("src/", "dist/").replace(".ts", ".esm.js"),
-        format: "esm",
-      },
-      {
-        file: input.replace("src/", "dist/").replace(".ts", ".common.js"),
-        format: "cjs",
-      },
-    ],
-    external: [],
-    plugins,
-  })),
-  ...entries.map((input) => ({
-    input,
-    output: {
-      file: input.replace("src/", "").replace(".ts", ".d.ts"),
-      format: "esm",
-    },
-    external: [],
-    plugins: [dts({ respectExternal: true })],
-  })),
-];
+    ...entries.map((input) => ({
+        input,
+        output: [
+            {
+                file: input.replace('src/', 'dist/').replace('.ts', '.umd.js'),
+                format: 'umd',
+                name: 'template.min.js',
+            },
+            {
+                file: input.replace('src/', 'dist/').replace('.ts', '.esm.js'),
+                format: 'esm',
+            },
+            {
+                file: input.replace('src/', 'dist/').replace('.ts', '.common.js'),
+                format: 'cjs',
+            },
+        ],
+        external: [],
+        plugins,
+    })),
+    ...entries.map((input) => ({
+        input,
+        output: {
+            file: input.replace('src/', '').replace('.ts', '.d.ts'),
+            format: 'esm',
+        },
+        external: [],
+        plugins: [dts({ respectExternal: true })],
+    })),
+]
