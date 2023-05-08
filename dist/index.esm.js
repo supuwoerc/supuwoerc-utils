@@ -7,7 +7,7 @@ function getElementSelector(node) {
   while (el && el.nodeType === Node.ELEMENT_NODE) {
     let selector = el.nodeName.toLowerCase();
     if (el.id) {
-      selector = `${selector}${el.id}`;
+      selector = `${selector}#${el.id}`;
       path.unshift(selector);
       break;
     } else {
@@ -20,9 +20,7 @@ function getElementSelector(node) {
         }
         sib = sib.previousElementSibling;
       }
-      if (nth !== 1) {
-        selector = `${selector}:nth-of-type(${nth})`;
-      }
+      selector = `${selector}:nth-of-type(${nth})`;
     }
     path.unshift(selector);
     el = el.parentNode;

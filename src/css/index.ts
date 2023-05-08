@@ -7,11 +7,11 @@ export function getElementSelector(node: Element) {
         throw new Error('The type of parameter node is incorrect')
     }
     let el = node
-    const path = []
+    const path: string[] = []
     while (el && el.nodeType === Node.ELEMENT_NODE) {
         let selector = el.nodeName.toLowerCase()
         if (el.id) {
-            selector = `${selector}${el.id}`
+            selector = `${selector}#${el.id}`
             path.unshift(selector)
             break
         } else {
@@ -24,9 +24,7 @@ export function getElementSelector(node: Element) {
                 }
                 sib = sib.previousElementSibling
             }
-            if (nth !== 1) {
-                selector = `${selector}:nth-of-type(${nth})`
-            }
+            selector = `${selector}:nth-of-type(${nth})`
         }
         path.unshift(selector)
         el = el.parentNode as Element
