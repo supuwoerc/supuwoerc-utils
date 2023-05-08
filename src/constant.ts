@@ -1,1 +1,1 @@
-export const LOG_PREFIX = "[@supuwoerc/utils]"
+export const LOG_PREFIX = '[@supuwoerc/utils]'

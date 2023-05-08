@@ -1,7 +1,7 @@
 /**
- * @param node 需要获取css-path的html元素
- * @returns 元素的css-path
+ * @param node 需要获取selector的元素
+ * @returns 元素的css-selector
  */
-declare function getCSSPath(node: HTMLElement): string;
+declare function getElementSelector(node: Element): string;
 
-export { getCSSPath };
+export { getElementSelector };
