@@ -7,6 +7,8 @@ import esbuild from 'rollup-plugin-esbuild'
 import typescript from 'rollup-plugin-typescript2'
 import babel from '@rollup/plugin-babel'
 import eslint from '@rollup/plugin-eslint'
+import { terser } from 'rollup-plugin-terser'
+import cleaner from 'rollup-plugin-cleaner'
 const entries = ['src/index.ts']
 const plugins = [
     eslint(),
@@ -30,6 +32,8 @@ const plugins = [
     typescript(),
     commonjs(),
     esbuild(),
+    terser(),
+    cleaner({ targets: ['./dist/'], silent: false }),
 ]
 
 export default [
