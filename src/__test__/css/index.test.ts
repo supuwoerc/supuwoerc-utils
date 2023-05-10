@@ -1,4 +1,4 @@
-import { getElementSelector } from '@/css/index'
+import { getElementSelector } from '@/index'
 
 describe('getElementSelector', () => {
     test('should throw an error if the parameter is not an Element instance', () => {
