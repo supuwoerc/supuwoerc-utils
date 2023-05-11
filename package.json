@@ -7,6 +7,7 @@
     "types": "index.d.ts",
     "type": "module",
     "scripts": {
+        "preinstall": "npx only-allow pnpm",
         "prepare": "husky install",
         "build": "rollup -c && npm run doc",
         "build:tsc": "npx tsc",
@@ -86,5 +87,12 @@
         "ts-jest": "^29.1.0",
         "typedoc": "^0.24.6",
         "typescript": "^5.0.4"
+    },
+    "engines": {
+        "node": ">=16.4",
+        "pnpm": ">=7.0 <8.0"
+    },
+    "volta": {
+        "node": "16.14.2"
     }
 }
