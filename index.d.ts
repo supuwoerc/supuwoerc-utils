@@ -5,11 +5,17 @@
 declare function getElementSelector(node: Element): string;
 /**
  *
- * @param element dom元素
+ * @param element DOM元素
  * @param className class类名
- * @returns 元素是否存在改class
+ * @returns 元素是否存在该class
  */
 declare function hasClass(element: HTMLElement, className: string): boolean;
+/**
+ *
+ * @param element DOM元素
+ * @param className 需要添加的className
+ */
+declare function addClass(element: HTMLElement, className: string): void;
 
 /**
  * @param url 需要获取参数的url字符串,默认为window.location.href
@@ -34,4 +40,4 @@ declare function generateUUID(): string;
  */
 declare function isSupportFontFamily(family: string): boolean;
 
-export { generateUUID, getElementSelector, getQueryParam, getQueryParams, hasClass, isSupportFontFamily };
+export { addClass, generateUUID, getElementSelector, getQueryParam, getQueryParams, hasClass, isSupportFontFamily };

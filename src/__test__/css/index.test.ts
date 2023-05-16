@@ -1,4 +1,4 @@
-import { getElementSelector, hasClass } from '@/index'
+import { getElementSelector, hasClass, addClass } from '@/index'
 
 describe('getElementSelector', () => {
     test('should throw an error if the parameter is not an Element instance', () => {
@@ -32,5 +32,24 @@ describe('hasClass', () => {
     })
     test('should return false if element does not have the specified class', () => {
         expect(hasClass(element, 'unexist-class')).toBeFalsy()
+    })
+})
+
+describe('addClass', () => {
+    let element: HTMLDivElement
+    beforeEach(() => {
+        element = document.createElement('div')
+        element.className = 'source-class'
+    })
+    test('the className can be added successfully', () => {
+        addClass(element, 'expect-class')
+        expect(hasClass(element, 'expect-class')).toBeTruthy()
+    })
+    test('classnames are not added repeatedly', () => {
+        addClass(element, 'expect-class')
+        addClass(element, 'expect-class')
+        addClass(element, 'expect-class')
+        expect(hasClass(element, 'expect-class')).toBeTruthy()
+        expect(element.className).toBe('source-class expect-class')
     })
 })

@@ -34,10 +34,21 @@ export function getElementSelector(node: Element) {
 
 /**
  *
- * @param element dom元素
+ * @param element DOM元素
  * @param className class类名
- * @returns 元素是否存在改class
+ * @returns 元素是否存在该class
  */
 export function hasClass(element: HTMLElement, className: string): boolean {
     return element.classList.contains(className)
+}
+
+/**
+ *
+ * @param element DOM元素
+ * @param className 需要添加的className
+ */
+export function addClass(element: HTMLElement, className: string) {
+    if (!hasClass(element, className)) {
+        element.classList.add(className)
+    }
 }
