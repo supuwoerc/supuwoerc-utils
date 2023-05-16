@@ -15,7 +15,7 @@ export function isSupportFontFamily(family: string) {
     const a = 100
     const i = 100
     const c = document.createElement('canvas')
-    const b = c.getContext('2d')!
+    const b = c.getContext('2d')! //eslint-disable-line
     c.width = a
     c.height = i
     b.textAlign = 'center'

@@ -1,4 +1,4 @@
-import { getQueryParam, getQueryParams } from '@/index'
+import { getQueryParam, getQueryParams, generateUUID } from '@/index'
 
 beforeAll(() => {
     delete (window as any).location
@@ -23,5 +23,14 @@ describe('getQueryParam', () => {
         expect(getQueryParam('param1')).toBe('val1')
         expect(getQueryParam('param2')).toBe('val2')
         expect(getQueryParam('param3')).toBe('val3_1')
+    })
+})
+
+describe('generateUUID', () => {
+    test('generates a unique string', () => {
+        const uuid1 = generateUUID()
+        const uuid2 = generateUUID()
+        expect(generateUUID()).toEqual(expect.any(String))
+        expect(uuid1 === uuid2).toBeFalsy()
     })
 })

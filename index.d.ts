@@ -15,6 +15,11 @@ declare function getQueryParams(url?: string): URLSearchParams;
  * @returns 参数值
  */
 declare function getQueryParam(param: string, url?: string): string | null;
+/**
+ * @description 生成uuid
+ * @returns 唯一的uuid
+ */
+declare function generateUUID(): string;
 
 /**
  * @param family =浏览器是否支持某种字体
@@ -22,4 +27,4 @@ declare function getQueryParam(param: string, url?: string): string | null;
  */
 declare function isSupportFontFamily(family: string): boolean;
 
-export { getElementSelector, getQueryParam, getQueryParams, isSupportFontFamily };
+export { generateUUID, getElementSelector, getQueryParam, getQueryParams, isSupportFontFamily };
