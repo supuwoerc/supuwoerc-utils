@@ -3,6 +3,13 @@
  * @returns 元素的css-selector
  */
 declare function getElementSelector(node: Element): string;
+/**
+ *
+ * @param element dom元素
+ * @param className class类名
+ * @returns 元素是否存在改class
+ */
+declare function hasClass(element: HTMLElement, className: string): boolean;
 
 /**
  * @param url 需要获取参数的url字符串,默认为window.location.href
@@ -27,4 +34,4 @@ declare function generateUUID(): string;
  */
 declare function isSupportFontFamily(family: string): boolean;
 
-export { generateUUID, getElementSelector, getQueryParam, getQueryParams, isSupportFontFamily };
+export { generateUUID, getElementSelector, getQueryParam, getQueryParams, hasClass, isSupportFontFamily };

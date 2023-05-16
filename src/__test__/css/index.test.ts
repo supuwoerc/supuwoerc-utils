@@ -1,4 +1,4 @@
-import { getElementSelector } from '@/index'
+import { getElementSelector, hasClass } from '@/index'
 
 describe('getElementSelector', () => {
     test('should throw an error if the parameter is not an Element instance', () => {
@@ -17,5 +17,20 @@ describe('getElementSelector', () => {
         expect(getElementSelector(p1)).toBe('div#test > p:nth-of-type(1)')
         expect(getElementSelector(p2)).toBe('div#test > p:nth-of-type(2)')
         expect(getElementSelector(div)).toBe('div#test')
+    })
+})
+
+describe('hasClass', () => {
+    let element: HTMLDivElement
+    beforeEach(() => {
+        element = document.createElement('div')
+        element.className = 'expect-class another-class'
+    })
+    test('should return true if element has the specified class', () => {
+        expect(hasClass(element, 'expect-class')).toBeTruthy()
+        expect(hasClass(element, 'another-class')).toBeTruthy()
+    })
+    test('should return false if element does not have the specified class', () => {
+        expect(hasClass(element, 'unexist-class')).toBeFalsy()
     })
 })

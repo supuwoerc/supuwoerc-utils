@@ -31,3 +31,13 @@ export function getElementSelector(node: Element) {
     }
     return path.join(' > ')
 }
+
+/**
+ *
+ * @param element dom元素
+ * @param className class类名
+ * @returns 元素是否存在改class
+ */
+export function hasClass(element: HTMLElement, className: string): boolean {
+    return element.classList.contains(className)
+}
