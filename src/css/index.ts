@@ -52,3 +52,14 @@ export function addClass(element: HTMLElement, className: string) {
         element.classList.add(className)
     }
 }
+
+/**
+ *
+ * @param element DOM元素
+ * @param className 需要移除的className
+ */
+export function removeClass(element: HTMLElement, className: string) {
+    if (hasClass(element, className)) {
+        element.classList.remove(className)
+    }
+}

@@ -16,6 +16,12 @@ declare function hasClass(element: HTMLElement, className: string): boolean;
  * @param className 需要添加的className
  */
 declare function addClass(element: HTMLElement, className: string): void;
+/**
+ *
+ * @param element DOM元素
+ * @param className 需要移除的className
+ */
+declare function removeClass(element: HTMLElement, className: string): void;
 
 /**
  * @param url 需要获取参数的url字符串,默认为window.location.href
@@ -40,4 +46,4 @@ declare function generateUUID(): string;
  */
 declare function isSupportFontFamily(family: string): boolean;
 
-export { addClass, generateUUID, getElementSelector, getQueryParam, getQueryParams, hasClass, isSupportFontFamily };
+export { addClass, generateUUID, getElementSelector, getQueryParam, getQueryParams, hasClass, isSupportFontFamily, removeClass };
