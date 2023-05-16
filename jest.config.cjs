@@ -6,6 +6,7 @@ module.exports = {
     coverageDirectory: 'coverage',
     coverageProvider: 'v8',
     testEnvironment: 'jsdom',
+    setupFiles: ['jest-canvas-mock'],
     moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/src/$1',
     },
