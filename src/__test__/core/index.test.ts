@@ -1,4 +1,5 @@
-import { getQueryParam, getQueryParams, generateUUID, getCookie, setCookie, clearAllCookie } from '@/index'
+import { getQueryParam, getQueryParams, generateUUID, getCookie, setCookie, clearAllCookie, uniq, uniqueBy } from '@/index'
+import { UniqueByTestDomain } from './types'
 
 beforeAll(() => {
     delete (window as any).location
@@ -90,5 +91,52 @@ describe('clearAllCookie', () => {
         expect(document.cookie).toBe('myCookie=cookieValue')
         clearAllCookie()
         expect(document.cookie).toBe('')
+    })
+})
+
+describe('uniq', () => {
+    test('a result with no duplicate elements should be returned', () => {
+        const source = [1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 9, 10, 10, 8]
+        expect(uniq(source)).toEqual([1, 2, 3, 4, 5, 6, 7, 9, 10, 8])
+    })
+    test('param should not be affected', () => {
+        const source = [1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 9, 10, 10, 8]
+        expect(uniq(source)).toEqual([1, 2, 3, 4, 5, 6, 7, 9, 10, 8])
+        expect(source).toEqual([1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 9, 10, 10, 8])
+    })
+})
+
+describe('uniqueBy', () => {
+    const obj1 = {
+        name: 'supuwoerc',
+        age: 25,
+    }
+    const obj2 = {
+        name: 'moss',
+        age: 18,
+    }
+    const obj3 = {
+        name: 'supuwoerc',
+        age: 28,
+    }
+    const sourceArray: Array<UniqueByTestDomain> = [obj1, obj2, obj3, obj1]
+    const copyArray: Array<UniqueByTestDomain> = [obj1, obj2, obj3, obj1]
+    const func = (a: UniqueByTestDomain, b: UniqueByTestDomain) => {
+        return a.name === b.name && a.age === b.age
+    }
+    test('a result with no duplicate elements should be returned', () => {
+        expect(uniqueBy(sourceArray, func)).toHaveLength(3)
+        expect(uniqueBy(sourceArray, func)).toEqual(
+            expect.arrayContaining([
+                // https://stackoverflow.com/questions/45692456/whats-the-difference-between-tomatchobject-and-objectcontaining
+                expect.objectContaining(obj1),
+                expect.objectContaining(obj2),
+                expect.objectContaining(obj3),
+            ])
+        )
+    })
+    test('param should not be affected', () => {
+        uniqueBy(sourceArray, func)
+        expect(sourceArray).toEqual(copyArray)
     })
 })

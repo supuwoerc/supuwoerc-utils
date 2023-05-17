@@ -59,6 +59,18 @@ declare function setCookie(name: string, value: string, expirationMilliseconds: 
  * @description 清理全部cookie键值对
  */
 declare function clearAllCookie(): void;
+/**
+ * @description 对数组去重
+ * @param array 需要去重的数组
+ * @returns 去重后的数组
+ */
+declare function uniq<T>(array: Array<T>): T[];
+/**
+ * @description 对数组去重
+ * @param array 需要去重的数组
+ * @returns 去重后的数组
+ */
+declare function uniqueBy<T>(array: Array<T>, equalFunc: (a: T, b: T) => boolean): T[];
 
 /**
  * @description 判断当前浏览器是否支持某一个字体
@@ -84,4 +96,4 @@ declare function isPc(): boolean;
  */
 declare function isMobile(): boolean;
 
-export { addClass, clearAllCookie, generateUUID, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, removeClass, setCookie };
+export { addClass, clearAllCookie, generateUUID, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, removeClass, setCookie, uniq, uniqueBy };

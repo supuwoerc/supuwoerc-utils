@@ -96,3 +96,27 @@ export function clearAllCookie() {
         document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
     }
 }
+
+/**
+ * @description 对数组去重
+ * @param array 需要去重的数组
+ * @returns 去重后的数组
+ */
+export function uniq<T>(array: Array<T>) {
+    return Array.from(new Set(array))
+}
+
+/**
+ * @description 对数组去重
+ * @param array 需要去重的数组
+ * @returns 去重后的数组
+ */
+export function uniqueBy<T>(array: Array<T>, equalFunc: (a: T, b: T) => boolean) {
+    return array.reduce((prev, cur) => {
+        const index = prev.findIndex((item) => equalFunc(item, cur))
+        if (index === -1) {
+            prev.push(cur)
+        }
+        return prev
+    }, [] as T[])
+}
