@@ -71,3 +71,28 @@ export function getCookie(name: string): string | null {
     }
     return null
 }
+/**
+ * @description 设置cookie
+ * @param name 需要设置的cookie的键名
+ * @param value 需要设置的cookie的值
+ * @param expirationMilliseconds 过期时间,单位:毫秒
+ */
+export function setCookie(name: string, value: string, expirationMilliseconds: number) {
+    const expirationDate = new Date()
+    expirationDate.setTime(new Date().getTime() + expirationMilliseconds)
+    const cookieValue = encodeURIComponent(value) + (expirationMilliseconds ? `; expires=${expirationDate.toUTCString()}` : '')
+    document.cookie = `${name}=${cookieValue}`
+}
+
+/**
+ * @description 清理全部cookie键值对
+ */
+export function clearAllCookie() {
+    const cookies = document.cookie.split(';')
+    for (let i = 0; i < cookies.length; i += 1) {
+        const cookie = cookies[i]
+        const eqPos = cookie.indexOf('=')
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+    }
+}

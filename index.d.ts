@@ -48,6 +48,17 @@ declare function generateUUID(): string;
  * @returns cookie值
  */
 declare function getCookie(name: string): string | null;
+/**
+ * @description 设置cookie
+ * @param name 需要设置的cookie的键名
+ * @param value 需要设置的cookie的值
+ * @param expirationMilliseconds 过期时间,单位:毫秒
+ */
+declare function setCookie(name: string, value: string, expirationMilliseconds: number): void;
+/**
+ * @description 清理全部cookie键值对
+ */
+declare function clearAllCookie(): void;
 
 /**
  * @description 判断当前浏览器是否支持某一个字体
@@ -56,4 +67,4 @@ declare function getCookie(name: string): string | null;
  */
 declare function isSupportFontFamily(family: string): boolean;
 
-export { addClass, generateUUID, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isSupportFontFamily, removeClass };
+export { addClass, clearAllCookie, generateUUID, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isSupportFontFamily, removeClass, setCookie };

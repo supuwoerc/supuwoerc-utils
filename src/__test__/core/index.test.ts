@@ -1,4 +1,4 @@
-import { getQueryParam, getQueryParams, generateUUID, getCookie } from '@/index'
+import { getQueryParam, getQueryParams, generateUUID, getCookie, setCookie, clearAllCookie } from '@/index'
 
 beforeAll(() => {
     delete (window as any).location
@@ -37,8 +37,12 @@ describe('generateUUID', () => {
 
 describe('getCookie', () => {
     beforeEach(() => {
+        clearAllCookie()
         document.cookie = 'expectCookie=abc'
         document.cookie = 'anotherCookie=zxc'
+    })
+    afterEach(() => {
+        clearAllCookie()
     })
     test('should return the cookie value if the cookie exists', () => {
         expect(getCookie('expectCookie')).toBe('abc')
@@ -46,5 +50,45 @@ describe('getCookie', () => {
     })
     test('should return null if the cookie does not exist', () => {
         expect(getCookie('nonExistentCookie')).toBeNull()
+    })
+})
+
+describe('setCookie', () => {
+    beforeEach(() => {
+        clearAllCookie()
+        jest.clearAllTimers()
+    })
+    afterEach(() => {
+        clearAllCookie()
+        jest.clearAllTimers()
+    })
+    test('should set the cookie with the specified name, value, and expiration', () => {
+        const cookieName = 'myCookie'
+        const cookieValue = 'cookieValue'
+        const expirationMilliseconds = 24 * 60 * 60 * 1000 // 24 hours
+        setCookie(cookieName, cookieValue, expirationMilliseconds)
+        expect(document.cookie).toBe(`${cookieName}=${encodeURIComponent(cookieValue)}`)
+    })
+    test('should not set the cookie if expirationMilliseconds < 0', () => {
+        const cookieName = 'myCookie'
+        const cookieValue = 'cookieValue'
+        const expirationMilliseconds = -1
+        setCookie(cookieName, cookieValue, expirationMilliseconds)
+        expect(document.cookie).toBe('')
+    })
+})
+
+describe('clearAllCookie', () => {
+    beforeEach(() => {
+        clearAllCookie()
+    })
+    test('should clear all cookie', () => {
+        const cookieName = 'myCookie'
+        const cookieValue = 'cookieValue'
+        const expirationMilliseconds = 60 * 60
+        setCookie(cookieName, cookieValue, expirationMilliseconds)
+        expect(document.cookie).toBe('myCookie=cookieValue')
+        clearAllCookie()
+        expect(document.cookie).toBe('')
     })
 })
