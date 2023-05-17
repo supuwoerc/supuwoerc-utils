@@ -175,3 +175,17 @@ export function swapArrayItem<T>(arr: T[], index1: number, index2: number): void
     }
     ;[arr[index1], arr[index2]] = [arr[index2], arr[index1]] //eslint-disable-line
 }
+
+/**
+ * @description 从数组中删除指定元素,存在重复元素将删除第一个
+ * @category Array
+ * @param array 原始数组
+ * @param value 需要删除的元素
+ * @returns
+ */
+export function removeArrayItem<T>(array: T[], value: T) {
+    const index = array.indexOf(value)
+    if (index >= 0) {
+        array.splice(index, 1) //eslint-disable-line
+    }
+}

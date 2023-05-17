@@ -109,6 +109,14 @@ declare function moveArrayItem<T>(arr: T[], from: number, to: number): void;
  * @param index2 元素2的索引
  */
 declare function swapArrayItem<T>(arr: T[], index1: number, index2: number): void;
+/**
+ * @description 从数组中删除指定元素,存在重复元素将删除第一个
+ * @category Array
+ * @param array 原始数组
+ * @param value 需要删除的元素
+ * @returns
+ */
+declare function removeArrayItem<T>(array: T[], value: T): void;
 
 /**
  * @description 检查 URL 是否以 "http://" 或 "https://" 开头
@@ -137,4 +145,4 @@ declare function isMobile(): boolean;
  */
 declare function isSupportFontFamily(family: string): boolean;
 
-export { addClass, clearAllCookie, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeClass, setCookie, swapArrayItem, uniq, uniqueBy };
+export { addClass, clearAllCookie, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, setCookie, swapArrayItem, uniq, uniqueBy };

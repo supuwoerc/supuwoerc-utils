@@ -10,6 +10,7 @@ import {
     getArrayItem,
     moveArrayItem,
     swapArrayItem,
+    removeArrayItem,
 } from '@/index'
 import { UniqueByTestDomain } from './types'
 
@@ -218,5 +219,25 @@ describe('swapArrayItem', () => {
         const arr = ['a', 'b', 'c', 'd']
         expect(() => swapArrayItem(arr, -1, 3)).toThrow('Invalid index')
         expect(() => swapArrayItem(arr, 2, 10)).toThrow('Invalid index')
+    })
+})
+
+describe('removeArrayItem', () => {
+    test('should remove the specified value from the array', () => {
+        const arr = [1, 2, 3, 4]
+        removeArrayItem(arr, 2)
+        expect(arr).toEqual([1, 3, 4])
+    })
+
+    test('should handle removing non-existing value from the array', () => {
+        const arr = [1, 2, 3, 4]
+        removeArrayItem(arr, 5)
+        expect(arr).toEqual([1, 2, 3, 4])
+    })
+
+    test('should handle removing value from an empty array', () => {
+        const arr: number[] = []
+        removeArrayItem(arr, 1)
+        expect(arr).toEqual([])
     })
 })
