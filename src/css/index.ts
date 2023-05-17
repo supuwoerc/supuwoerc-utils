@@ -27,9 +27,9 @@ export function getElementSelector(node: Element) {
                 }
                 sib = sib.previousElementSibling
             }
-            const elNodeName = el.nodeName.toLocaleLowerCase()
-            const hasPreSibling = el.previousElementSibling?.nodeName.toLocaleLowerCase() === elNodeName
-            const hasNextSibling = el.nextElementSibling?.nodeName.toLocaleLowerCase() === elNodeName
+            const elNodeName = el.nodeName.toLowerCase()
+            const hasPreSibling = el.previousElementSibling?.nodeName.toLowerCase() === elNodeName
+            const hasNextSibling = el.nextElementSibling?.nodeName.toLowerCase() === elNodeName
             const hasSibling = hasPreSibling || hasNextSibling
             if (el !== document.body && hasSibling) {
                 selector = `${selector}:nth-of-type(${nth})`
