@@ -23,7 +23,7 @@
 
 ```typescript
 import { getElementSelector } from "@supuwoerc/utils"
-console.log(getElementSelector(document.body)) //'html:nth-of-type(1) > body:nth-of-type(1)'
+console.log(getElementSelector(document.body)) // 'html > body'
 ```
 
 ## 维护者

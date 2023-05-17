@@ -8,15 +8,22 @@ describe('getElementSelector', () => {
         }).toThrow(Error)
     })
     test('should return a valid CSS selector for the given element', () => {
+        expect(getElementSelector(document.body)).toBe('html > body')
+    })
+    test('should return a valid CSS selector for the given element', () => {
         const div = document.createElement('div')
         const p1 = document.createElement('p')
         const p2 = document.createElement('p')
+        const p3 = document.createElement('p')
         div.appendChild(p1)
         div.appendChild(p2)
         div.id = 'test'
+        document.body.appendChild(p3)
+        document.body.appendChild(div)
         expect(getElementSelector(p1)).toBe('div#test > p:nth-of-type(1)')
         expect(getElementSelector(p2)).toBe('div#test > p:nth-of-type(2)')
         expect(getElementSelector(div)).toBe('div#test')
+        expect(getElementSelector(p3)).toBe('html > body > p')
     })
 })
 

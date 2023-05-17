@@ -27,7 +27,13 @@ export function getElementSelector(node: Element) {
                 }
                 sib = sib.previousElementSibling
             }
-            selector = `${selector}:nth-of-type(${nth})`
+            const elNodeName = el.nodeName.toLocaleLowerCase()
+            const hasPreSibling = el.previousElementSibling?.nodeName.toLocaleLowerCase() === elNodeName
+            const hasNextSibling = el.nextElementSibling?.nodeName.toLocaleLowerCase() === elNodeName
+            const hasSibling = hasPreSibling || hasNextSibling
+            if (el !== document.body && hasSibling) {
+                selector = `${selector}:nth-of-type(${nth})`
+            }
         }
         path.unshift(selector)
         el = el.parentNode as Element
