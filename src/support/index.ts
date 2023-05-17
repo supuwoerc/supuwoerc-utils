@@ -1,5 +1,6 @@
 /**
- * @param family =浏览器是否支持某种字体
+ * @description 判断当前浏览器是否支持某一个字体
+ * @param family 浏览器是否支持某种字体
  * @returns 是否支持
  */
 export function isSupportFontFamily(family: string) {

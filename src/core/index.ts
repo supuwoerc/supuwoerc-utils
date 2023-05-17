@@ -1,4 +1,5 @@
 /**
+ * @description 获取url中的参数对象
  * @param url 需要获取参数的url字符串,默认为window.location.href
  * @returns URLSearchParams对象
  */
@@ -9,6 +10,7 @@ export function getQueryParams(url = window.location.href) {
 }
 
 /**
+ * @description 获取url中的参数值
  * @param param 需要获取的参数名字符串
  * @param url 需要获取参数的url字符串,默认为window.location.href
  * @returns 参数值
@@ -48,4 +50,24 @@ export function generateUUID() {
         }
         return (c === 'x' ? random : (random & 0x3) | 0x8).toString(16) //eslint-disable-line
     })
+}
+
+/**
+ * @description 根据键获取cookie值
+ * @param name 需要获取的cookie键名
+ * @returns cookie值
+ */
+export function getCookie(name: string): string | null {
+    const cookieString = document.cookie
+    const cookies = cookieString.split(';')
+    const foundCookie = cookies.find((cookie) => {
+        const [cookieName] = cookie.split('=')
+        const trimmedCookieName = cookieName.trim()
+        return trimmedCookieName === name
+    })
+    if (foundCookie) {
+        const [, cookieValue] = foundCookie.split('=')
+        return decodeURIComponent(cookieValue.trim())
+    }
+    return null
 }

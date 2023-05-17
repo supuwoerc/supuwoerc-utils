@@ -1,4 +1,4 @@
-import { getQueryParam, getQueryParams, generateUUID } from '@/index'
+import { getQueryParam, getQueryParams, generateUUID, getCookie } from '@/index'
 
 beforeAll(() => {
     delete (window as any).location
@@ -32,5 +32,19 @@ describe('generateUUID', () => {
         const uuid2 = generateUUID()
         expect(generateUUID()).toEqual(expect.any(String))
         expect(uuid1 === uuid2).toBeFalsy()
+    })
+})
+
+describe('getCookie', () => {
+    beforeEach(() => {
+        document.cookie = 'expectCookie=abc'
+        document.cookie = 'anotherCookie=zxc'
+    })
+    test('should return the cookie value if the cookie exists', () => {
+        expect(getCookie('expectCookie')).toBe('abc')
+        expect(getCookie('anotherCookie')).toBe('zxc')
+    })
+    test('should return null if the cookie does not exist', () => {
+        expect(getCookie('nonExistentCookie')).toBeNull()
     })
 })

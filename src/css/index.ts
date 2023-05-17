@@ -1,4 +1,5 @@
 /**
+ * @description 获取DOM元素的选择器
  * @param node 需要获取selector的元素
  * @returns 元素的css-selector
  */
@@ -33,7 +34,7 @@ export function getElementSelector(node: Element) {
 }
 
 /**
- *
+ * @description 判断DOM元素是否存在className
  * @param element DOM元素
  * @param className class类名
  * @returns 元素是否存在该class
@@ -43,7 +44,7 @@ export function hasClass(element: HTMLElement, className: string): boolean {
 }
 
 /**
- *
+ * @description 为DOM元素添加className
  * @param element DOM元素
  * @param className 需要添加的className
  */
@@ -54,7 +55,7 @@ export function addClass(element: HTMLElement, className: string) {
 }
 
 /**
- *
+ * @description 为DOM元素移除className
  * @param element DOM元素
  * @param className 需要移除的className
  */
