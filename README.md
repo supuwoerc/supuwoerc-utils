@@ -22,8 +22,8 @@
 ## 示例
 
 ```typescript
-import { getCSSPath } from "@supuwoerc/utils"
-console.log(getCSSPath(html-element))
+import { getElementSelector } from "@supuwoerc/utils"
+console.log(getElementSelector(document.body)) //'html:nth-of-type(1) > body:nth-of-type(1)'
 ```
 
 ## 维护者
