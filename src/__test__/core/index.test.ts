@@ -1,4 +1,16 @@
-import { getQueryParam, getQueryParams, generateUUID, getCookie, setCookie, clearAllCookie, uniq, uniqueBy } from '@/index'
+import {
+    getQueryParam,
+    getQueryParams,
+    generateUUID,
+    getCookie,
+    setCookie,
+    clearAllCookie,
+    uniq,
+    uniqueBy,
+    getArrayItem,
+    moveArrayItem,
+    swapArrayItem,
+} from '@/index'
 import { UniqueByTestDomain } from './types'
 
 beforeAll(() => {
@@ -138,5 +150,73 @@ describe('uniqueBy', () => {
     test('param should not be affected', () => {
         uniqueBy(sourceArray, func)
         expect(sourceArray).toEqual(copyArray)
+    })
+})
+
+describe('getArrayItem', () => {
+    test('should return the item at the specified positive index', () => {
+        const array = [1, 2, 3, 4, 5]
+        const index = 2
+        const result = getArrayItem(array, index)
+        expect(result).toBe(3)
+    })
+    test('should return undefined if the array is empty', () => {
+        const array: number[] = []
+        const index = 0
+        const result = getArrayItem(array, index)
+        expect(result).toBeUndefined()
+    })
+    test('should return undefined if the index is out of range', () => {
+        const array = [1, 2, 3, 4, 5]
+        const index = 10
+        const result = getArrayItem(array, index)
+        expect(result).toBeUndefined()
+    })
+    test('should return the item if the index < 0', () => {
+        const array = [1, 2, 3, 4, 5]
+        const index = -2
+        const result = getArrayItem(array, index)
+        expect(result).toBe(4)
+    })
+})
+
+describe('moveArrayItem', () => {
+    test('should move array item from old index to new index', () => {
+        const arr = [1, 2, 3, 4, 5]
+        moveArrayItem(arr, 1, 3)
+        expect(arr).toEqual([1, 3, 4, 2, 5])
+    })
+    test('should handle moving item to the beginning of the array', () => {
+        const arr = [1, 2, 3, 4, 5]
+        moveArrayItem(arr, 4, 0)
+        expect(arr).toEqual([5, 1, 2, 3, 4])
+    })
+    test('should handle moving item to the end of the array', () => {
+        const arr = [1, 2, 3, 4, 5]
+        moveArrayItem(arr, 0, 4)
+        expect(arr).toEqual([2, 3, 4, 5, 1])
+    })
+    test('should throw an error for invalid indices', () => {
+        const arr = [1, 2, 3, 4, 5]
+        expect(() => moveArrayItem(arr, -1, 3)).toThrow('Invalid index')
+        expect(() => moveArrayItem(arr, 2, 10)).toThrow('Invalid index')
+    })
+})
+
+describe('swapArrayItem', () => {
+    test('should swap array items at the specified indices', () => {
+        const arr = ['a', 'b', 'c', 'd']
+        swapArrayItem(arr, 1, 3)
+        expect(arr).toEqual(['a', 'd', 'c', 'b'])
+    })
+    test('should handle swapping item with itself', () => {
+        const arr = ['a', 'b', 'c', 'd']
+        swapArrayItem(arr, 2, 2)
+        expect(arr).toEqual(['a', 'b', 'c', 'd'])
+    })
+    test('should throw an error for invalid indices', () => {
+        const arr = ['a', 'b', 'c', 'd']
+        expect(() => swapArrayItem(arr, -1, 3)).toThrow('Invalid index')
+        expect(() => swapArrayItem(arr, 2, 10)).toThrow('Invalid index')
     })
 })

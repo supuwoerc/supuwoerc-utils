@@ -1,5 +1,6 @@
 /**
  * @description 获取url中的参数对象
+ * @category URl
  * @param url 需要获取参数的url字符串,默认为window.location.href
  * @returns URLSearchParams对象
  */
@@ -11,6 +12,7 @@ export function getQueryParams(url = window.location.href) {
 
 /**
  * @description 获取url中的参数值
+ * @category URl
  * @param param 需要获取的参数名字符串
  * @param url 需要获取参数的url字符串,默认为window.location.href
  * @returns 参数值
@@ -22,6 +24,7 @@ export function getQueryParam(param: string, url = window.location.href) {
 
 /**
  * @description 生成uuid
+ * @category String
  * @returns 唯一的uuid
  */
 export function generateUUID() {
@@ -54,6 +57,7 @@ export function generateUUID() {
 
 /**
  * @description 根据键获取cookie值
+ * @category Cookie
  * @param name 需要获取的cookie键名
  * @returns cookie值
  */
@@ -73,6 +77,7 @@ export function getCookie(name: string): string | null {
 }
 /**
  * @description 设置cookie
+ * @category Cookie
  * @param name 需要设置的cookie的键名
  * @param value 需要设置的cookie的值
  * @param expirationMilliseconds 过期时间,单位:毫秒
@@ -86,6 +91,7 @@ export function setCookie(name: string, value: string, expirationMilliseconds: n
 
 /**
  * @description 清理全部cookie键值对
+ * @category Cookie
  */
 export function clearAllCookie() {
     const cookies = document.cookie.split(';')
@@ -99,6 +105,7 @@ export function clearAllCookie() {
 
 /**
  * @description 对数组去重
+ * @category Array
  * @param array 需要去重的数组
  * @returns 去重后的数组
  */
@@ -108,6 +115,7 @@ export function uniq<T>(array: Array<T>) {
 
 /**
  * @description 对数组去重
+ * @category Array
  * @param array 需要去重的数组
  * @returns 去重后的数组
  */
@@ -119,4 +127,51 @@ export function uniqueBy<T>(array: Array<T>, equalFunc: (a: T, b: T) => boolean)
         }
         return prev
     }, [] as T[])
+}
+
+/**
+ * @description 根据索引获取数组中元素
+ * @category Array
+ * @param array 数组
+ * @param index 索引,可以是负数
+ * @returns 数组对应索引上的元素
+ */
+export function getArrayItem<T>(array: Array<T>, index: number) {
+    const { length } = array
+    let targetIndex = index
+    if (length <= 0) {
+        return undefined
+    }
+    if (index < 0) {
+        targetIndex += length
+    }
+    return array[targetIndex]
+}
+/**
+ * @description 移动数组元素
+ * @category Array
+ * @param arr 原始数组
+ * @param from 需要移动元素的索引
+ * @param to 需要移动到的位置
+ */
+export function moveArrayItem<T>(arr: T[], from: number, to: number): void {
+    if (from < 0 || from >= arr.length || to < 0 || to >= arr.length) {
+        throw new Error('Invalid index')
+    }
+    const item = arr.splice(from, 1)[0] //eslint-disable-line
+    arr.splice(to, 0, item) //eslint-disable-line
+}
+
+/**
+ * @description 交换数组中两个元素的位置
+ * @category Array
+ * @param arr 原始数组
+ * @param index1 元素1的索引
+ * @param index2 元素2的索引
+ */
+export function swapArrayItem<T>(arr: T[], index1: number, index2: number): void {
+    if (index1 < 0 || index1 >= arr.length || index2 < 0 || index2 >= arr.length) {
+        throw new Error('Invalid index')
+    }
+    ;[arr[index1], arr[index2]] = [arr[index2], arr[index1]] //eslint-disable-line
 }
