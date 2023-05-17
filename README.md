@@ -1,7 +1,6 @@
 # @supuwoerc/utils
 
-:lollipop: TypeScript开发日常使用的一些方法
-
+ TypeScript开发日常使用的一些方法
 ## 安装
 
 这个项目使用 [node](http://nodejs.org) 和 [npm](https://npmjs.com)。请确保你本地安装了它们。
@@ -17,6 +16,9 @@
 
 `pnpm add @supuwoerc/utils`
 
+## 方法文档
+
+点击访问：[方法文档-来自TypeDoc](https://supuwoerc.github.io/supuwoerc-utils/modules.html)
 ## 示例
 
 ```typescript
