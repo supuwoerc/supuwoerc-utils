@@ -20,9 +20,9 @@ export function isPc(): boolean {
 }
 
 /**
- * @description 判断当前浏览器是否是pc端
+ * @description 判断当前浏览器是否是移动端
  * @category Boolean
- * @returns 当前浏览器是否是pc端
+ * @returns 当前浏览器是否是移动端
  */
 export function isMobile(): boolean {
     return !isPc()
