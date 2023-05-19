@@ -30,7 +30,9 @@ export function array2Tree<T extends Record<keyof any, any> = TreeNode>(
                 map.set(pid, { [childrenKey]: [] } as T)
             }
             const parent = map.get(pid)
-            parent![childrenKey].push(wrapItem)
+            if (parent) {
+                parent[childrenKey].push(wrapItem)
+            }
         }
     })
     return res

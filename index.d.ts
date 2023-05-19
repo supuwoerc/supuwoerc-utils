@@ -259,4 +259,24 @@ declare function debounce<T extends (...args: any[]) => any>(
     options?: DebounceOptions,
 ): debounce<T>;
 
-export { addClass, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, uniq, uniqueBy };
+interface TreeNode {
+    id: string;
+    pid?: string;
+    [key: keyof any]: any;
+}
+type Tree<T = TreeNode> = T & {
+    [key: string]: Tree<T>[];
+};
+
+/**
+ * @description 将数组组装为树结构
+ * @param data 原始数据数组
+ * @param childrenKey 组装为树状数据时的子节点的键名
+ * @param idKey 数据的唯一标识,作为父子节点的关联依据
+ * @param pidKey 数据的父节点idKey的值
+ * @param rootPid 根结点的pid
+ * @returns 树状数据数组
+ */
+declare function array2Tree<T extends Record<keyof any, any> = TreeNode>(data: T[], childrenKey?: string, idKey?: keyof T, pidKey?: keyof T, rootPid?: string): Tree<T>[];
+
+export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, uniq, uniqueBy };
