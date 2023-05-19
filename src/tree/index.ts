@@ -2,6 +2,8 @@ import { Tree, TreeNode } from './types'
 
 /**
  * @description 将数组组装为树结构
+ * @category Tree
+ * @category Array
  * @param data 原始数据数组
  * @param childrenKey 组装为树状数据时的子节点的键名
  * @param idKey 数据的唯一标识,作为父子节点的关联依据

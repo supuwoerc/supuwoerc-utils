@@ -192,6 +192,8 @@ export function removeArrayItem<T>(array: T[], value: T) {
 
 /**
  * @description 保存文件
+ * @category File
+ * @category Blob
  * @param data 文件Blob数据
  * @param filename 文件名称,如果需要从header.content-disposition获取,开发者需要自行处理
  * @param type 文件的MIME类型,参考:https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types

@@ -119,6 +119,8 @@ declare function swapArrayItem<T>(arr: T[], index1: number, index2: number): voi
 declare function removeArrayItem<T>(array: T[], value: T): void;
 /**
  * @description 保存文件
+ * @category File
+ * @category Blob
  * @param data 文件Blob数据
  * @param filename 文件名称,如果需要从header.content-disposition获取,开发者需要自行处理
  * @param type 文件的MIME类型,参考:https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types
@@ -270,6 +272,8 @@ type Tree<T = TreeNode> = T & {
 
 /**
  * @description 将数组组装为树结构
+ * @category Tree
+ * @category Array
  * @param data 原始数据数组
  * @param childrenKey 组装为树状数据时的子节点的键名
  * @param idKey 数据的唯一标识,作为父子节点的关联依据
