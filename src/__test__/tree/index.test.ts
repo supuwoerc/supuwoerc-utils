@@ -1,4 +1,4 @@
-import { array2Tree } from '@/index'
+import { array2Tree, tree2Array } from '@/index'
 
 describe('array2Tree', () => {
     test('should convert flat array to tree structure', () => {
@@ -145,5 +145,184 @@ describe('array2Tree', () => {
         ]
         const result = array2Tree(data)
         expect(result).toEqual(expectedTree)
+    })
+})
+
+describe('tree2Array', () => {
+    test('should convert tree structure to flat array', () => {
+        const tree = [
+            {
+                id: 1,
+                name: 'Root',
+                children: [
+                    {
+                        id: 2,
+                        name: 'Child 1',
+                        children: [
+                            { id: 4, name: 'Grandchild 1', children: [] },
+                            { id: 5, name: 'Grandchild 2', children: [] },
+                        ],
+                    },
+                    {
+                        id: 3,
+                        name: 'Child 2',
+                        children: [],
+                    },
+                ],
+            },
+        ]
+        const expectedArray = [
+            {
+                id: 1,
+                name: 'Root',
+                children: [
+                    {
+                        id: 2,
+                        name: 'Child 1',
+                        children: [
+                            { id: 4, name: 'Grandchild 1', children: [] },
+                            { id: 5, name: 'Grandchild 2', children: [] },
+                        ],
+                    },
+                    {
+                        id: 3,
+                        name: 'Child 2',
+                        children: [],
+                    },
+                ],
+            },
+            {
+                id: 2,
+                name: 'Child 1',
+                children: [
+                    { id: 4, name: 'Grandchild 1', children: [] },
+                    { id: 5, name: 'Grandchild 2', children: [] },
+                ],
+            },
+            { id: 4, name: 'Grandchild 1', children: [] },
+            { id: 5, name: 'Grandchild 2', children: [] },
+            {
+                id: 3,
+                name: 'Child 2',
+                children: [],
+            },
+        ]
+
+        const result = tree2Array(tree)
+
+        expect(result).toEqual(expectedArray)
+    })
+    test('should handle empty tree', () => {
+        const result = tree2Array([])
+        expect(result).toEqual([])
+    })
+    test('should handle custom children key', () => {
+        const tree = [
+            {
+                id: 1,
+                name: 'Root',
+                descendants: [
+                    {
+                        id: 2,
+                        name: 'Child 1',
+                        descendants: [
+                            { id: 4, name: 'Grandchild 1', descendants: [] },
+                            { id: 5, name: 'Grandchild 2', descendants: [] },
+                        ],
+                    },
+                    {
+                        id: 3,
+                        name: 'Child 2',
+                        descendants: [],
+                    },
+                ],
+            },
+        ]
+        const expectedArray = [
+            {
+                id: 1,
+                name: 'Root',
+                descendants: [
+                    {
+                        id: 2,
+                        name: 'Child 1',
+                        descendants: [
+                            { id: 4, name: 'Grandchild 1', descendants: [] },
+                            { id: 5, name: 'Grandchild 2', descendants: [] },
+                        ],
+                    },
+                    {
+                        id: 3,
+                        name: 'Child 2',
+                        descendants: [],
+                    },
+                ],
+            },
+            {
+                id: 2,
+                name: 'Child 1',
+                descendants: [
+                    { id: 4, name: 'Grandchild 1', descendants: [] },
+                    { id: 5, name: 'Grandchild 2', descendants: [] },
+                ],
+            },
+            { id: 4, name: 'Grandchild 1', descendants: [] },
+            { id: 5, name: 'Grandchild 2', descendants: [] },
+            {
+                id: 3,
+                name: 'Child 2',
+                descendants: [],
+            },
+        ]
+        const result = tree2Array(tree, 'descendants')
+        expect(result).toEqual(expectedArray)
+    })
+    test('should handle multiple root nodes in tree', () => {
+        const tree = [
+            {
+                id: 1,
+                name: 'Root 1',
+                children: [
+                    { id: 4, name: 'Child 1', children: [] },
+                    { id: 5, name: 'Child 2', children: [] },
+                ],
+            },
+            {
+                id: 2,
+                name: 'Root 2',
+                children: [{ id: 6, name: 'Child 3', children: [] }],
+            },
+            {
+                id: 3,
+                name: 'Root 3',
+                children: [{ id: 7, name: 'Child 4', children: [] }],
+            },
+        ]
+        const expectedArray = [
+            {
+                id: 1,
+                name: 'Root 1',
+                children: [
+                    { id: 4, name: 'Child 1', children: [] },
+                    { id: 5, name: 'Child 2', children: [] },
+                ],
+            },
+            { id: 4, name: 'Child 1', children: [] },
+            { id: 5, name: 'Child 2', children: [] },
+            {
+                id: 2,
+                name: 'Root 2',
+                children: [{ id: 6, name: 'Child 3', children: [] }],
+            },
+            { id: 6, name: 'Child 3', children: [] },
+            {
+                id: 3,
+                name: 'Root 3',
+                children: [{ id: 7, name: 'Child 4', children: [] }],
+            },
+            { id: 7, name: 'Child 4', children: [] },
+        ]
+        const result = tree2Array(tree)
+        expect(result).toEqual(expectedArray)
     })
 })

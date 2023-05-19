@@ -262,12 +262,12 @@ declare function debounce<T extends (...args: any[]) => any>(
 ): debounce<T>;
 
 interface TreeNode {
-    id: string;
-    pid?: string;
+    id: keyof any;
+    pid?: keyof any;
     [key: keyof any]: any;
 }
-type Tree<T = TreeNode> = T & {
-    [key: string]: Tree<T>[];
+type Tree<T = TreeNode, K extends string = 'children'> = T & {
+    [P in K]?: Tree<T, K>[];
 };
 
 /**
@@ -282,5 +282,14 @@ type Tree<T = TreeNode> = T & {
  * @returns 树状数据数组
  */
 declare function array2Tree<T extends Record<keyof any, any> = TreeNode>(data: T[], childrenKey?: string, idKey?: keyof T, pidKey?: keyof T, rootPid?: string): Tree<T>[];
+/**
+ * @description 将树状数据平铺
+ * @categpry Tree
+ * @categpry Array
+ * @param tree 需要平铺的树状数据
+ * @param childrenKey 树状数据的子节点的键名
+ * @returns 平铺后的数据
+ */
+declare function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey?: keyof T): T[];
 
-export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, uniq, uniqueBy };
+export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, tree2Array, uniq, uniqueBy };

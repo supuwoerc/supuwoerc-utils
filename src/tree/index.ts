@@ -14,8 +14,8 @@ import { Tree, TreeNode } from './types'
 export function array2Tree<T extends Record<keyof any, any> = TreeNode>(
     data: T[],
     childrenKey = 'children',
-    idKey: keyof T = 'id' as keyof T,
-    pidKey: keyof T = 'pid' as keyof T,
+    idKey = 'id' as keyof T,
+    pidKey = 'pid' as keyof T,
     rootPid = ''
 ): Tree<T>[] {
     const map = new Map<keyof any, T>()
@@ -38,4 +38,19 @@ export function array2Tree<T extends Record<keyof any, any> = TreeNode>(
         }
     })
     return res
+}
+
+/**
+ * @description 将树状数据平铺
+ * @categpry Tree
+ * @categpry Array
+ * @param tree 需要平铺的树状数据
+ * @param childrenKey 树状数据的子节点的键名
+ * @returns 平铺后的数据
+ */
+export function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey = 'children' as keyof T): T[] {
+    return tree.reduce((prev, cur) => {
+        const children = cur[childrenKey] as Tree<T>[]
+        return prev.concat(cur, tree2Array((children ?? []) as Tree<T>[], childrenKey))
+    }, [] as T[])
 }
