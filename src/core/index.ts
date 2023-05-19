@@ -189,3 +189,18 @@ export function removeArrayItem<T>(array: T[], value: T) {
         array.splice(index, 1) //eslint-disable-line
     }
 }
+
+/**
+ * @description 保存文件
+ * @param data 文件Blob数据
+ * @param filename 文件名称,如果需要从header.content-disposition获取,开发者需要自行处理
+ * @param type 文件的MIME类型,参考:https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+ */
+export function saveFile(data: BlobPart, filename: string, type = 'application/octet-stream;charset=utf-8') {
+    const blob = new Blob([data], { type })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = filename
+    link.click()
+    URL.revokeObjectURL(link.href)
+}

@@ -117,6 +117,13 @@ declare function swapArrayItem<T>(arr: T[], index1: number, index2: number): voi
  * @returns
  */
 declare function removeArrayItem<T>(array: T[], value: T): void;
+/**
+ * @description 保存文件
+ * @param data 文件Blob数据
+ * @param filename 文件名称,如果需要从header.content-disposition获取,开发者需要自行处理
+ * @param type 文件的MIME类型,参考:https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+ */
+declare function saveFile(data: BlobPart, filename: string, type?: string): void;
 
 /**
  * @description 检查 URL 是否以 "http://" 或 "https://" 开头
@@ -132,9 +139,9 @@ declare function isHttpOrHttps(url: string): boolean;
  */
 declare function isPc(): boolean;
 /**
- * @description 判断当前浏览器是否是pc端
+ * @description 判断当前浏览器是否是移动端
  * @category Boolean
- * @returns 当前浏览器是否是pc端
+ * @returns 当前浏览器是否是移动端
  */
 declare function isMobile(): boolean;
 /**
@@ -252,4 +259,4 @@ declare function debounce<T extends (...args: any[]) => any>(
     options?: DebounceOptions,
 ): debounce<T>;
 
-export { addClass, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, setCookie, swapArrayItem, throttle, uniq, uniqueBy };
+export { addClass, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, uniq, uniqueBy };

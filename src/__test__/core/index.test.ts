@@ -11,6 +11,7 @@ import {
     moveArrayItem,
     swapArrayItem,
     removeArrayItem,
+    saveFile,
 } from '@/index'
 import { UniqueByTestDomain } from './types'
 
@@ -239,5 +240,40 @@ describe('removeArrayItem', () => {
         const arr: number[] = []
         removeArrayItem(arr, 1)
         expect(arr).toEqual([])
+    })
+})
+
+describe('saveFile', () => {
+    const mockCreateElement = jest.fn(() => {
+        return {
+            href: '',
+            download: '',
+            click: jest.fn(),
+        } as any
+    })
+    const mockCreateObjectURL = jest.fn(() => 'blobUrl')
+    const mockRevokeObjectURL = jest.fn()
+    const createElementOG = document.createElement.bind(document)
+    const createObjectURLOG = URL.createObjectURL
+    const revokeObjectURLOG = URL.revokeObjectURL
+    beforeAll(() => {
+        globalThis.document.createElement = mockCreateElement
+        globalThis.URL.createObjectURL = mockCreateObjectURL
+        globalThis.URL.revokeObjectURL = mockRevokeObjectURL
+    })
+    afterAll(() => {
+        globalThis.document.createElement = createElementOG
+        globalThis.URL.createObjectURL = createObjectURLOG
+        globalThis.URL.revokeObjectURL = revokeObjectURLOG
+    })
+    test('should save a file', () => {
+        saveFile('hello world!', 'hello.txt', 'text/plain')
+        expect(mockCreateElement).toBeCalledWith('a')
+        expect(mockCreateObjectURL).toBeCalledWith(expect.any(Blob))
+        const mockA = mockCreateElement.mock.results[0].value
+        expect(mockA.href).toBe('blobUrl')
+        expect(mockA.download).toBe('hello.txt')
+        expect(mockA.click).toBeCalled()
+        expect(mockRevokeObjectURL).toBeCalledWith('blobUrl')
     })
 })
