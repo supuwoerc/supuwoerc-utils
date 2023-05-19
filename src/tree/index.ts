@@ -42,8 +42,8 @@ export function array2Tree<T extends Record<keyof any, any> = TreeNode>(
 
 /**
  * @description 将树状数据平铺
- * @categpry Tree
- * @categpry Array
+ * @category Tree
+ * @category Array
  * @param tree 需要平铺的树状数据
  * @param childrenKey 树状数据的子节点的键名
  * @returns 平铺后的数据
