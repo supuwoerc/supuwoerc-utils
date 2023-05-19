@@ -278,7 +278,7 @@ type Tree<T = TreeNode, K extends string = 'children'> = T & {
  * @param childrenKey 组装为树状数据时的子节点的键名
  * @param idKey 数据的唯一标识,作为父子节点的关联依据
  * @param pidKey 数据的父节点idKey的值
- * @param rootPid 根结点的pid
+ * @param rootPid 根节点的pid
  * @returns 树状数据数组
  */
 declare function array2Tree<T extends Record<keyof any, any> = TreeNode>(data: T[], childrenKey?: string, idKey?: keyof T, pidKey?: keyof T, rootPid?: string): Tree<T>[];
