@@ -1,5 +1,15 @@
 import { MOBILE_UA, PC_UA } from '@/constant'
-import { isHttpOrHttps, isMobile, isPc } from '@/index'
+import { isHttpOrHttps, isMobile, isPc, isSupportFontFamily } from '@/index'
+
+describe('isSupportFontFamily', () => {
+    test('determine whether the browser supports a certain font', () => {
+        // @ts-ignore
+        expect(() => isSupportFontFamily(null)).toThrow(/argument is not a string/)
+    })
+    test('return the correct result', () => {
+        expect(isSupportFontFamily('Microsoft Yahei')).toEqual(expect.any(Boolean))
+    })
+})
 
 describe('isHttpOrHttps', () => {
     test('should return true for URLs starting with http://', () => {
