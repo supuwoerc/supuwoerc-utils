@@ -1,3 +1,5 @@
+import { EqualFunc as EqualFunc$1 } from '@/tree/types';
+
 /**
  * @description 获取DOM元素的选择器
  * @category CSS
@@ -84,7 +86,7 @@ declare function uniq<T>(array: Array<T>): T[];
  * @param array 需要去重的数组
  * @returns 去重后的数组
  */
-declare function uniqueBy<T>(array: Array<T>, equalFunc: (a: T, b: T) => boolean): T[];
+declare function uniqueBy<T>(array: Array<T>, equalFunc: EqualFunc$1<T>): T[];
 /**
  * @description 根据索引获取数组中元素
  * @category Array
@@ -269,6 +271,7 @@ interface TreeNode {
 type Tree<T = TreeNode, K extends string = 'children'> = T & {
     [P in K]?: Tree<T, K>[];
 };
+type EqualFunc<T> = (a: T, b: T) => boolean;
 
 /**
  * @description 将数组组装为树结构
@@ -291,5 +294,15 @@ declare function array2Tree<T extends Record<keyof any, any> = TreeNode>(data: T
  * @returns 平铺后的数据
  */
 declare function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey?: keyof T): T[];
+/**
+ * @description 根据唯一值查找树状数据中父节点到自身完整路径
+ * @param tree 树状数据
+ * @param target 目标值
+ * @param idKey 目标值键名,默认为id
+ * @param childrenKey 子节点键名,默认为children
+ * @param equalFunc 判断相等的方法,默认比较方法使用'==='
+ * @returns 树状数据根节点到自身的完整路径
+ */
+declare function getParents<T extends Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, childrenKey?: keyof T, equalFunc?: EqualFunc<any>): T[];
 
-export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, tree2Array, uniq, uniqueBy };
+export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, tree2Array, uniq, uniqueBy };

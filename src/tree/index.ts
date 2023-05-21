@@ -1,4 +1,4 @@
-import { Tree, TreeNode } from './types'
+import { Tree, TreeNode, EqualFunc } from './types'
 
 /**
  * @description 将数组组装为树结构
@@ -53,4 +53,47 @@ export function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey = 'childre
         const children = cur[childrenKey] as Tree<T>[]
         return prev.concat(cur, tree2Array((children ?? []) as Tree<T>[], childrenKey))
     }, [] as T[])
+}
+
+/**
+ * @description 根据唯一值查找树状数据中父节点到自身完整路径
+ * @param tree 树状数据
+ * @param target 目标值
+ * @param idKey 目标值键名,默认为id
+ * @param childrenKey 子节点键名,默认为children
+ * @param equalFunc 判断相等的方法,默认比较方法使用'==='
+ * @returns 树状数据根节点到自身的完整路径
+ */
+export function getParents<T extends Partial<TreeNode>>(
+    tree: T[],
+    target: any,
+    idKey: keyof T = 'id',
+    childrenKey: keyof T = 'children',
+    equalFunc: EqualFunc<any> = (val, tarVal) => val === tarVal
+): T[] {
+    const stack: T[] = []
+    const dfs = (node: T): boolean => {
+        if (equalFunc(node[idKey], target)) {
+            stack.push(node)
+            return true
+        }
+        const children = node[childrenKey] as T[]
+        if (children && Array.isArray(children)) {
+            // eslint-disable-next-line
+            for (const child of children) {
+                if (dfs(child)) {
+                    stack.push(node)
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    // eslint-disable-next-line
+    for (const node of tree) {
+        if (dfs(node)) {
+            return stack.reverse()
+        }
+    }
+    return []
 }

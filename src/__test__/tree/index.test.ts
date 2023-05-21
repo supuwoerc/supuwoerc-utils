@@ -1,4 +1,4 @@
-import { array2Tree, tree2Array } from '@/index'
+import { array2Tree, getParents, tree2Array } from '@/index'
 
 describe('array2Tree', () => {
     test('should convert flat array to tree structure', () => {
@@ -324,5 +324,73 @@ describe('tree2Array', () => {
         ]
         const result = tree2Array(tree)
         expect(result).toEqual(expectedArray)
+    })
+})
+
+describe('getParents', () => {
+    const tree = [
+        {
+            id: 1,
+            name: 'Root',
+            children: [
+                {
+                    id: 2,
+                    name: 'Child 1',
+                    children: [
+                        { id: 4, name: 'Grandchild 1', children: [] },
+                        { id: 5, name: 'Grandchild 2', children: [] },
+                    ],
+                },
+                {
+                    id: 3,
+                    name: 'Child 2',
+                    children: [],
+                },
+            ],
+        },
+    ]
+    test('should return the path to the target node in the tree', () => {
+        const targetId = 4
+        const result = getParents(tree, targetId)
+        expect(result).toMatchSnapshot()
+    })
+
+    test('should return an empty array when the target node is not found', () => {
+        const targetId = 99
+        const result = getParents(tree, targetId)
+        expect(result).toMatchSnapshot()
+    })
+
+    test('should support custom ID key and children key', () => {
+        const treeWithCustomKeys = [
+            {
+                nodeId: 1,
+                label: 'Root',
+                descendants: [
+                    {
+                        nodeId: 2,
+                        label: 'Child 1',
+                        descendants: [
+                            { nodeId: 4, label: 'Grandchild 1', descendants: [] },
+                            { nodeId: 5, label: 'Grandchild 2', descendants: [] },
+                        ],
+                    },
+                    {
+                        nodeId: 3,
+                        label: 'Child 2',
+                        descendants: [],
+                    },
+                ],
+            },
+        ]
+        const targetId = 4
+        const result = getParents(treeWithCustomKeys, targetId, 'nodeId', 'descendants')
+        expect(result).toMatchSnapshot()
+    })
+
+    test('should support custom equal function for comparing values', () => {
+        const targetId = '4'
+        const result = getParents(tree, targetId, 'id', 'children', (a, b) => a.toString() === b.toString())
+        expect(result).toMatchSnapshot()
     })
 })

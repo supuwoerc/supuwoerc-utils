@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getParents should return an empty array when the target node is not found 1`] = `[]`;
+
+exports[`getParents should return the path to the target node in the tree 1`] = `
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "id": 4,
+            "name": "Grandchild 1",
+          },
+          {
+            "children": [],
+            "id": 5,
+            "name": "Grandchild 2",
+          },
+        ],
+        "id": 2,
+        "name": "Child 1",
+      },
+      {
+        "children": [],
+        "id": 3,
+        "name": "Child 2",
+      },
+    ],
+    "id": 1,
+    "name": "Root",
+  },
+  {
+    "children": [
+      {
+        "children": [],
+        "id": 4,
+        "name": "Grandchild 1",
+      },
+      {
+        "children": [],
+        "id": 5,
+        "name": "Grandchild 2",
+      },
+    ],
+    "id": 2,
+    "name": "Child 1",
+  },
+  {
+    "children": [],
+    "id": 4,
+    "name": "Grandchild 1",
+  },
+]
+`;
+
+exports[`getParents should support custom ID key and children key 1`] = `
+[
+  {
+    "descendants": [
+      {
+        "descendants": [
+          {
+            "descendants": [],
+            "label": "Grandchild 1",
+            "nodeId": 4,
+          },
+          {
+            "descendants": [],
+            "label": "Grandchild 2",
+            "nodeId": 5,
+          },
+        ],
+        "label": "Child 1",
+        "nodeId": 2,
+      },
+      {
+        "descendants": [],
+        "label": "Child 2",
+        "nodeId": 3,
+      },
+    ],
+    "label": "Root",
+    "nodeId": 1,
+  },
+  {
+    "descendants": [
+      {
+        "descendants": [],
+        "label": "Grandchild 1",
+        "nodeId": 4,
+      },
+      {
+        "descendants": [],
+        "label": "Grandchild 2",
+        "nodeId": 5,
+      },
+    ],
+    "label": "Child 1",
+    "nodeId": 2,
+  },
+  {
+    "descendants": [],
+    "label": "Grandchild 1",
+    "nodeId": 4,
+  },
+]
+`;
+
+exports[`getParents should support custom equal function for comparing values 1`] = `
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [],
+            "id": 4,
+            "name": "Grandchild 1",
+          },
+          {
+            "children": [],
+            "id": 5,
+            "name": "Grandchild 2",
+          },
+        ],
+        "id": 2,
+        "name": "Child 1",
+      },
+      {
+        "children": [],
+        "id": 3,
+        "name": "Child 2",
+      },
+    ],
+    "id": 1,
+    "name": "Root",
+  },
+  {
+    "children": [
+      {
+        "children": [],
+        "id": 4,
+        "name": "Grandchild 1",
+      },
+      {
+        "children": [],
+        "id": 5,
+        "name": "Grandchild 2",
+      },
+    ],
+    "id": 2,
+    "name": "Child 1",
+  },
+  {
+    "children": [],
+    "id": 4,
+    "name": "Grandchild 1",
+  },
+]
+`;

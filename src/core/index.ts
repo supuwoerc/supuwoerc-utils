@@ -1,3 +1,5 @@
+import { EqualFunc } from '@/tree/types'
+
 /**
  * @description 获取url中的参数对象
  * @category URl
@@ -119,7 +121,7 @@ export function uniq<T>(array: Array<T>) {
  * @param array 需要去重的数组
  * @returns 去重后的数组
  */
-export function uniqueBy<T>(array: Array<T>, equalFunc: (a: T, b: T) => boolean) {
+export function uniqueBy<T>(array: Array<T>, equalFunc: EqualFunc<T>) {
     return array.reduce((prev, cur) => {
         const index = prev.findIndex((item) => equalFunc(item, cur))
         if (index === -1) {
