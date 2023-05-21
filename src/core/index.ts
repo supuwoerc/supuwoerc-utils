@@ -1,6 +1,15 @@
 import { EqualFunc } from '@/tree/types'
 
 /**
+ * @description 数据toString
+ * @param v 原始数据
+ * @returns 转为string的结果
+ */
+export function toString(v: any) {
+    return Object.prototype.toString.call(v)
+}
+
+/**
  * @description 获取url中的参数对象
  * @category URl
  * @param url 需要获取参数的url字符串,默认为window.location.href

@@ -33,6 +33,12 @@ declare function addClass(element: HTMLElement, className: string): void;
 declare function removeClass(element: HTMLElement, className: string): void;
 
 /**
+ * @description 数据toString
+ * @param v 原始数据
+ * @returns 转为string的结果
+ */
+declare function toString(v: any): string;
+/**
  * @description 获取url中的参数对象
  * @category URl
  * @param url 需要获取参数的url字符串,默认为window.location.href
@@ -155,6 +161,76 @@ declare function isMobile(): boolean;
  * @returns 是否支持
  */
 declare function isSupportFontFamily(family: string): boolean;
+/**
+ * @description 判断一个值不是undefined
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值不是undefined返回true,否则为false
+ */
+declare function isDefined<T = any>(val?: T): boolean;
+/**
+ * @description 判断一个值是undefined
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是undefine返回true,否则为false
+ */
+declare function isUndefined(val: any): boolean;
+/**
+ * @description 判断一个值是不是boolean
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是boolean返回true,否则为false
+ */
+declare function isBoolean(val: any): boolean;
+/**
+ * @description 判断一个值是不是function
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是function返回true,否则为false
+ */
+declare function isFunction(val: any): boolean;
+/**
+ * @description 判断一个值是不是number
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是number返回true,否则为false
+ */
+declare function isNumber(val: any): boolean;
+/**
+ * @description 判断一个值是不是string
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是string返回true,否则为false
+ */
+declare function isString(val: any): boolean;
+/**
+ * @description 判断一个值是不是Object
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是object返回true,否则为false
+ */
+declare function isObject(val: any): boolean;
+/**
+ * @description 判断一个值是不是null
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是null返回true,否则为false
+ */
+declare function isNull(val: any): boolean;
+/**
+ * @description 判断一个值是不是RegExp
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是RegExp返回true,否则为false
+ */
+declare function isRegExp(val: any): boolean;
+/**
+ * @description 判断一个值是不是Date
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是Date返回true,否则为false
+ */
+declare function isDate(val: any): boolean;
 
 // Type definitions for throttle-debounce 5.0
 // Project: https://github.com/niksy/throttle-debounce
@@ -318,4 +394,4 @@ declare function getParents<T extends Partial<TreeNode>>(tree: T[], target: any,
  */
 declare function getTargetFromTree<T extends Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, equalFunc?: EqualFunc<any>): T | null;
 
-export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, tree2Array, uniq, uniqueBy };
+export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isBoolean, isDate, isDefined, isFunction, isHttpOrHttps, isMobile, isNull, isNumber, isObject, isPc, isRegExp, isString, isSupportFontFamily, isUndefined, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, toString, tree2Array, uniq, uniqueBy };

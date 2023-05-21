@@ -1,3 +1,5 @@
+import { toString } from '@/core'
+
 /**
  * @description 检查 URL 是否以 "http://" 或 "https://" 开头
  * @category Boolean
@@ -63,4 +65,104 @@ export function isSupportFontFamily(family: string) {
         })
     }
     return g(h).join('') !== g(family).join('')
+}
+
+/**
+ * @description 判断一个值不是undefined
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值不是undefined返回true,否则为false
+ */
+export function isDefined<T = any>(val?: T) {
+    return typeof val !== 'undefined'
+}
+
+/**
+ * @description 判断一个值是undefined
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是undefine返回true,否则为false
+ */
+export function isUndefined(val: any) {
+    return toString(val) === '[object Undefined]'
+}
+
+/**
+ * @description 判断一个值是不是boolean
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是boolean返回true,否则为false
+ */
+export function isBoolean(val: any) {
+    return typeof val === 'boolean'
+}
+
+/**
+ * @description 判断一个值是不是function
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是function返回true,否则为false
+ */
+export function isFunction(val: any) {
+    return typeof val === 'function'
+}
+
+/**
+ * @description 判断一个值是不是number
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是number返回true,否则为false
+ */
+export function isNumber(val: any) {
+    return typeof val === 'number'
+}
+
+/**
+ * @description 判断一个值是不是string
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是string返回true,否则为false
+ */
+export function isString(val: any) {
+    return typeof val === 'string'
+}
+
+/**
+ * @description 判断一个值是不是Object
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是object返回true,否则为false
+ */
+export function isObject(val: any) {
+    return toString(val) === '[object Object]'
+}
+
+/**
+ * @description 判断一个值是不是null
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是null返回true,否则为false
+ */
+export function isNull(val: any) {
+    return toString(val) === '[object Null]'
+}
+
+/**
+ * @description 判断一个值是不是RegExp
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是RegExp返回true,否则为false
+ */
+export function isRegExp(val: any) {
+    return toString(val) === '[object RegExp]'
+}
+
+/**
+ * @description 判断一个值是不是Date
+ * @catogory Boolean
+ * @param val 原始值
+ * @returns 当值是Date返回true,否则为false
+ */
+export function isDate(val: any) {
+    return toString(val) === '[object Date]'
 }
