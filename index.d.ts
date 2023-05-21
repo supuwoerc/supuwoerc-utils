@@ -296,6 +296,8 @@ declare function array2Tree<T extends Record<keyof any, any> = TreeNode>(data: T
 declare function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey?: keyof T): T[];
 /**
  * @description 根据唯一值查找树状数据中父节点到自身完整路径
+ * @category Tree
+ * @category Array
  * @param tree 树状数据
  * @param target 目标值
  * @param idKey 目标值键名,默认为id
@@ -304,5 +306,16 @@ declare function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey?: keyof T
  * @returns 树状数据根节点到自身的完整路径
  */
 declare function getParents<T extends Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, childrenKey?: keyof T, equalFunc?: EqualFunc<any>): T[];
+/**
+ * @description 从树状数据查找目标值对象
+ * @category Tree
+ * @category Array
+ * @param tree 树状数据
+ * @param target 目标值
+ * @param idKey 目标值键名,默认为id
+ * @param equalFunc 判断相等的方法,默认比较方法使用'==='
+ * @returns
+ */
+declare function getTargetFromTree<T extends Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, equalFunc?: EqualFunc<any>): T | null;
 
-export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, tree2Array, uniq, uniqueBy };
+export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isHttpOrHttps, isMobile, isPc, isSupportFontFamily, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, tree2Array, uniq, uniqueBy };

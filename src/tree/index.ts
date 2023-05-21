@@ -57,6 +57,8 @@ export function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey = 'childre
 
 /**
  * @description 根据唯一值查找树状数据中父节点到自身完整路径
+ * @category Tree
+ * @category Array
  * @param tree 树状数据
  * @param target 目标值
  * @param idKey 目标值键名,默认为id
@@ -96,4 +98,38 @@ export function getParents<T extends Partial<TreeNode>>(
         }
     }
     return []
+}
+
+/**
+ * @description 从树状数据查找目标值对象
+ * @category Tree
+ * @category Array
+ * @param tree 树状数据
+ * @param target 目标值
+ * @param idKey 目标值键名,默认为id
+ * @param equalFunc 判断相等的方法,默认比较方法使用'==='
+ * @returns
+ */
+export function getTargetFromTree<T extends Partial<TreeNode>>(
+    tree: T[],
+    target: any,
+    idKey: keyof T = 'id' as keyof T,
+    equalFunc: EqualFunc<any> = (a, b) => a === b
+): T | null {
+    if (!Array.isArray(tree)) {
+        return null
+    }
+    // eslint-disable-next-line
+    for (const item of tree) {
+        if (equalFunc(item[idKey], target)) {
+            return item
+        }
+        if (item.children) {
+            const value = getTargetFromTree(item.children, target, idKey, equalFunc)
+            if (value) {
+                return value as T
+            }
+        }
+    }
+    return null
 }
