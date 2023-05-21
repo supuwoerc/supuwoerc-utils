@@ -69,7 +69,7 @@ export function isSupportFontFamily(family: string) {
 
 /**
  * @description 判断一个值不是undefined
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值不是undefined返回true,否则为false
  */
@@ -79,7 +79,7 @@ export function isDefined<T = any>(val?: T) {
 
 /**
  * @description 判断一个值是undefined
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是undefine返回true,否则为false
  */
@@ -89,7 +89,7 @@ export function isUndefined(val: any) {
 
 /**
  * @description 判断一个值是不是boolean
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是boolean返回true,否则为false
  */
@@ -99,7 +99,7 @@ export function isBoolean(val: any) {
 
 /**
  * @description 判断一个值是不是function
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是function返回true,否则为false
  */
@@ -109,7 +109,7 @@ export function isFunction(val: any) {
 
 /**
  * @description 判断一个值是不是number
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是number返回true,否则为false
  */
@@ -119,7 +119,7 @@ export function isNumber(val: any) {
 
 /**
  * @description 判断一个值是不是string
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是string返回true,否则为false
  */
@@ -129,7 +129,7 @@ export function isString(val: any) {
 
 /**
  * @description 判断一个值是不是Object
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是object返回true,否则为false
  */
@@ -139,7 +139,7 @@ export function isObject(val: any) {
 
 /**
  * @description 判断一个值是不是null
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是null返回true,否则为false
  */
@@ -149,7 +149,7 @@ export function isNull(val: any) {
 
 /**
  * @description 判断一个值是不是RegExp
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是RegExp返回true,否则为false
  */
@@ -159,7 +159,7 @@ export function isRegExp(val: any) {
 
 /**
  * @description 判断一个值是不是Date
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是Date返回true,否则为false
  */

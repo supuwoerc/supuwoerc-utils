@@ -220,7 +220,7 @@ export function saveFile(data: BlobPart, filename: string, type = 'application/o
 
 /**
  * @description 根据原始字符串生成固定前缀的新字符串
- * @catogory String
+ * @category String
  * @param prefix 需要的前缀
  * @param str 原始字符串
  * @returns 确认前缀的新字符串
@@ -234,7 +234,7 @@ export function ensurePrefix(prefix: string, str: string) {
 
 /**
  * @description 根据原始字符串生成固定后缀的新字符串
- * @catogory String
+ * @category String
  * @param suffix 需要的后缀
  * @param str 原始字符串
  * @returns 确认后缀的新字符串

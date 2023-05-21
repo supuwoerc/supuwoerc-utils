@@ -136,7 +136,7 @@ declare function removeArrayItem<T>(array: T[], value: T): void;
 declare function saveFile(data: BlobPart, filename: string, type?: string): void;
 /**
  * @description 根据原始字符串生成固定前缀的新字符串
- * @catogory String
+ * @category String
  * @param prefix 需要的前缀
  * @param str 原始字符串
  * @returns 确认前缀的新字符串
@@ -144,7 +144,7 @@ declare function saveFile(data: BlobPart, filename: string, type?: string): void
 declare function ensurePrefix(prefix: string, str: string): string;
 /**
  * @description 根据原始字符串生成固定后缀的新字符串
- * @catogory String
+ * @category String
  * @param suffix 需要的后缀
  * @param str 原始字符串
  * @returns 确认后缀的新字符串
@@ -179,70 +179,70 @@ declare function isMobile(): boolean;
 declare function isSupportFontFamily(family: string): boolean;
 /**
  * @description 判断一个值不是undefined
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值不是undefined返回true,否则为false
  */
 declare function isDefined<T = any>(val?: T): boolean;
 /**
  * @description 判断一个值是undefined
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是undefine返回true,否则为false
  */
 declare function isUndefined(val: any): boolean;
 /**
  * @description 判断一个值是不是boolean
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是boolean返回true,否则为false
  */
 declare function isBoolean(val: any): boolean;
 /**
  * @description 判断一个值是不是function
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是function返回true,否则为false
  */
 declare function isFunction(val: any): boolean;
 /**
  * @description 判断一个值是不是number
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是number返回true,否则为false
  */
 declare function isNumber(val: any): boolean;
 /**
  * @description 判断一个值是不是string
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是string返回true,否则为false
  */
 declare function isString(val: any): boolean;
 /**
  * @description 判断一个值是不是Object
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是object返回true,否则为false
  */
 declare function isObject(val: any): boolean;
 /**
  * @description 判断一个值是不是null
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是null返回true,否则为false
  */
 declare function isNull(val: any): boolean;
 /**
  * @description 判断一个值是不是RegExp
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是RegExp返回true,否则为false
  */
 declare function isRegExp(val: any): boolean;
 /**
  * @description 判断一个值是不是Date
- * @catogory Boolean
+ * @category Boolean
  * @param val 原始值
  * @returns 当值是Date返回true,否则为false
  */
