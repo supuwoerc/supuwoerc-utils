@@ -12,6 +12,8 @@ import {
     swapArrayItem,
     removeArrayItem,
     saveFile,
+    ensurePrefix,
+    ensureSuffix,
 } from '@/index'
 import { UniqueByTestDomain } from './types'
 
@@ -275,5 +277,27 @@ describe('saveFile', () => {
         expect(mockA.download).toBe('hello.txt')
         expect(mockA.click).toBeCalled()
         expect(mockRevokeObjectURL).toBeCalledWith('blobUrl')
+    })
+})
+
+describe('ensurePrefix', () => {
+    test('should add prefix when not present', () => {
+        expect(ensurePrefix('https://', 'example.com')).toBe('https://example.com')
+        expect(ensurePrefix('abc', 'def')).toBe('abcdef')
+    })
+    test('should not modify string when prefix already present', () => {
+        expect(ensurePrefix('https://', 'https://example.com')).toBe('https://example.com')
+        expect(ensurePrefix('abc', 'abcdef')).toBe('abcdef')
+    })
+})
+
+describe('ensureSuffix', () => {
+    test('should add suffix when not present', () => {
+        expect(ensureSuffix('.com', 'example')).toBe('example.com')
+        expect(ensureSuffix('def', 'abc')).toBe('abcdef')
+    })
+    test('should not modify string when suffix already present', () => {
+        expect(ensureSuffix('.com', 'example.com')).toBe('example.com')
+        expect(ensureSuffix('def', 'abcdef')).toBe('abcdef')
     })
 })

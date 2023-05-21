@@ -134,6 +134,22 @@ declare function removeArrayItem<T>(array: T[], value: T): void;
  * @param type 文件的MIME类型,参考:https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types
  */
 declare function saveFile(data: BlobPart, filename: string, type?: string): void;
+/**
+ * @description 根据原始字符串生成固定前缀的新字符串
+ * @catogory String
+ * @param prefix 需要的前缀
+ * @param str 原始字符串
+ * @returns 确认前缀的新字符串
+ */
+declare function ensurePrefix(prefix: string, str: string): string;
+/**
+ * @description 根据原始字符串生成固定后缀的新字符串
+ * @catogory String
+ * @param suffix 需要的后缀
+ * @param str 原始字符串
+ * @returns 确认后缀的新字符串
+ */
+declare function ensureSuffix(suffix: string, str: string): string;
 
 /**
  * @description 检查 URL 是否以 "http://" 或 "https://" 开头
@@ -394,4 +410,4 @@ declare function getParents<T extends Partial<TreeNode>>(tree: T[], target: any,
  */
 declare function getTargetFromTree<T extends Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, equalFunc?: EqualFunc<any>): T | null;
 
-export { addClass, array2Tree, clearAllCookie, debounce, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isBoolean, isDate, isDefined, isFunction, isHttpOrHttps, isMobile, isNull, isNumber, isObject, isPc, isRegExp, isString, isSupportFontFamily, isUndefined, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, toString, tree2Array, uniq, uniqueBy };
+export { addClass, array2Tree, clearAllCookie, debounce, ensurePrefix, ensureSuffix, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isBoolean, isDate, isDefined, isFunction, isHttpOrHttps, isMobile, isNull, isNumber, isObject, isPc, isRegExp, isString, isSupportFontFamily, isUndefined, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, toString, tree2Array, uniq, uniqueBy };
