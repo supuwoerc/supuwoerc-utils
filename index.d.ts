@@ -1,5 +1,3 @@
-import { EqualFunc as EqualFunc$1 } from '@/tree/types';
-
 /**
  * @description 获取DOM元素的选择器
  * @category CSS
@@ -31,6 +29,16 @@ declare function addClass(element: HTMLElement, className: string): void;
  * @param className 需要移除的className
  */
 declare function removeClass(element: HTMLElement, className: string): void;
+
+interface TreeNode {
+    id: keyof any;
+    pid?: keyof any;
+    [key: keyof any]: any;
+}
+type Tree<T = TreeNode, K extends string = 'children'> = T & {
+    [P in K]?: Tree<T, K>[];
+};
+type EqualFunc<T> = (a: T, b: T) => boolean;
 
 /**
  * @description 数据toString
@@ -92,7 +100,7 @@ declare function uniq<T>(array: Array<T>): T[];
  * @param array 需要去重的数组
  * @returns 去重后的数组
  */
-declare function uniqueBy<T>(array: Array<T>, equalFunc: EqualFunc$1<T>): T[];
+declare function uniqueBy<T>(array: Array<T>, equalFunc: EqualFunc<T>): T[];
 /**
  * @description 根据索引获取数组中元素
  * @category Array
@@ -354,16 +362,6 @@ declare function debounce<T extends (...args: any[]) => any>(
     callback: T,
     options?: DebounceOptions,
 ): debounce<T>;
-
-interface TreeNode {
-    id: keyof any;
-    pid?: keyof any;
-    [key: keyof any]: any;
-}
-type Tree<T = TreeNode, K extends string = 'children'> = T & {
-    [P in K]?: Tree<T, K>[];
-};
-type EqualFunc<T> = (a: T, b: T) => boolean;
 
 /**
  * @description 将数组组装为树结构

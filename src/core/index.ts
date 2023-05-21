@@ -1,4 +1,4 @@
-import { EqualFunc } from '@/tree/types'
+import { EqualFunc } from './types'
 
 /**
  * @description 数据toString
