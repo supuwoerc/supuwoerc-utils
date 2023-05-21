@@ -3,6 +3,7 @@ export interface TreeNode {
     pid?: keyof any
     [key: keyof any]: any
 }
+
 export type Tree<T = TreeNode, K extends string = 'children'> = T & { [P in K]?: Tree<T, K>[] }
 
 export type EqualFunc<T> = (a: T, b: T) => boolean
