@@ -1,6 +1,8 @@
 # @supuwoerc/utils
 
- TypeScript开发日常使用的一些方法
+ tips：请确保安装版本>1.0.3,在此之前的版本未为方法添加测试
+
+ 前端开发日常使用的一些方法,持续收集中...
 ## 安装
 
 这个项目使用 [node](http://nodejs.org) 和 [npm](https://npmjs.com)。请确保你本地安装了它们。
