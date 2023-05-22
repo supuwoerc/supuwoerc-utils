@@ -9,6 +9,8 @@ import babel from '@rollup/plugin-babel'
 import eslint from '@rollup/plugin-eslint'
 import { terser } from 'rollup-plugin-terser'
 import cleaner from 'rollup-plugin-cleaner'
+import path from 'path'
+import { fileURLToPath } from 'url'
 const entries = ['src/index.ts']
 const plugins = [
     eslint(),
@@ -24,7 +26,7 @@ const plugins = [
         entries: [
             {
                 find: '@',
-                replacement: new URL('./src', import.meta.url).pathname,
+                replacement: path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'src'),
             },
         ],
     }),
