@@ -11,6 +11,7 @@ import { terser } from 'rollup-plugin-terser'
 import cleaner from 'rollup-plugin-cleaner'
 import path from 'path'
 import { fileURLToPath } from 'url'
+
 const entries = ['src/index.ts']
 const plugins = [
     eslint(),

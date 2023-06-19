@@ -461,4 +461,10 @@ describe('getTargetFromTree', () => {
         const result = getTargetFromTree(tree, targetId, 'id', (a, b) => a.toString() === b.toString())
         expect(result).toEqual(expectedNode)
     })
+    test('should support custom equal function for comparing values', () => {
+        const targetId = '4'
+        const expectedNode = { id: 4, name: 'Grandchild 1', children: [] }
+        const result = getTargetFromTree(tree, targetId, 'id', (a, b) => a.toString() === b.toString(), 'children')
+        expect(result).toEqual(expectedNode)
+    })
 })

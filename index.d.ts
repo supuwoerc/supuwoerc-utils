@@ -395,7 +395,7 @@ declare function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey?: keyof T
  * @param equalFunc 判断相等的方法,默认比较方法使用'==='
  * @returns 树状数据根节点到自身的完整路径
  */
-declare function getParents<T extends Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, childrenKey?: keyof T, equalFunc?: EqualFunc<any>): T[];
+declare function getParents<T = Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, childrenKey?: keyof T, equalFunc?: EqualFunc<any>): T[];
 /**
  * @description 从树状数据查找目标值对象
  * @category Tree
@@ -406,6 +406,6 @@ declare function getParents<T extends Partial<TreeNode>>(tree: T[], target: any,
  * @param equalFunc 判断相等的方法,默认比较方法使用'==='
  * @returns
  */
-declare function getTargetFromTree<T extends Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, equalFunc?: EqualFunc<any>): T | null;
+declare function getTargetFromTree<T = Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, equalFunc?: EqualFunc<any>, childrenKey?: keyof T): T | null;
 
 export { addClass, array2Tree, clearAllCookie, debounce, ensurePrefix, ensureSuffix, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isBoolean, isDate, isDefined, isFunction, isHttpOrHttps, isMobile, isNull, isNumber, isObject, isPc, isRegExp, isString, isSupportFontFamily, isUndefined, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, toString, tree2Array, uniq, uniqueBy };

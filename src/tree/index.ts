@@ -66,11 +66,11 @@ export function tree2Array<T = TreeNode>(tree: Tree<T>[], childrenKey = 'childre
  * @param equalFunc 判断相等的方法,默认比较方法使用'==='
  * @returns 树状数据根节点到自身的完整路径
  */
-export function getParents<T extends Partial<TreeNode>>(
+export function getParents<T = Partial<TreeNode>>(
     tree: T[],
     target: any,
-    idKey: keyof T = 'id',
-    childrenKey: keyof T = 'children',
+    idKey: keyof T = 'id' as keyof T,
+    childrenKey: keyof T = 'children' as keyof T,
     equalFunc: EqualFunc<any> = (val, tarVal) => val === tarVal
 ): T[] {
     const stack: T[] = []
@@ -110,11 +110,12 @@ export function getParents<T extends Partial<TreeNode>>(
  * @param equalFunc 判断相等的方法,默认比较方法使用'==='
  * @returns
  */
-export function getTargetFromTree<T extends Partial<TreeNode>>(
+export function getTargetFromTree<T = Partial<TreeNode>>(
     tree: T[],
     target: any,
     idKey: keyof T = 'id' as keyof T,
-    equalFunc: EqualFunc<any> = (a, b) => a === b
+    equalFunc: EqualFunc<any> = (a, b) => a === b,
+    childrenKey: keyof T = 'children' as keyof T
 ): T | null {
     if (!Array.isArray(tree)) {
         return null
@@ -124,8 +125,8 @@ export function getTargetFromTree<T extends Partial<TreeNode>>(
         if (equalFunc(item[idKey], target)) {
             return item
         }
-        if (item.children) {
-            const value = getTargetFromTree(item.children, target, idKey, equalFunc)
+        if (item[childrenKey]) {
+            const value = getTargetFromTree(item[childrenKey] as T[], target, idKey, equalFunc)
             if (value) {
                 return value as T
             }
