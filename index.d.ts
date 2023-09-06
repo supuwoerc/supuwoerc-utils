@@ -40,6 +40,10 @@ type Tree<T = TreeNode, K extends string = 'children'> = T & {
 };
 type EqualFunc<T> = (a: T, b: T) => boolean;
 
+interface StorageOptions {
+    prefix?: string | string[];
+}
+
 /**
  * @description 数据toString
  * @param v 原始数据
@@ -158,6 +162,18 @@ declare function ensurePrefix(prefix: string, str: string): string;
  * @returns 确认后缀的新字符串
  */
 declare function ensureSuffix(suffix: string, str: string): string;
+declare class Storage<Mapping extends Record<keyof unknown, unknown>> {
+    private storage;
+    private prefix;
+    constructor(options?: StorageOptions);
+    set<Key extends keyof Mapping, Value = Mapping[Key]>(key: Key, value: Value): void;
+    get<Key extends keyof Mapping, Value = Mapping[Key]>(key: Key): Value | null;
+    remove<Key extends keyof Mapping>(key: Key): void;
+    clear(): void;
+    private getKey;
+    static stringify(v: unknown): string;
+    static parse<T>(v: string): T;
+}
 
 /**
  * @description 检查 URL 是否以 "http://" 或 "https://" 开头
@@ -408,4 +424,4 @@ declare function getParents<T = Partial<TreeNode>>(tree: T[], target: any, idKey
  */
 declare function getTargetFromTree<T = Partial<TreeNode>>(tree: T[], target: any, idKey?: keyof T, equalFunc?: EqualFunc<any>, childrenKey?: keyof T): T | null;
 
-export { addClass, array2Tree, clearAllCookie, debounce, ensurePrefix, ensureSuffix, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isBoolean, isDate, isDefined, isFunction, isHttpOrHttps, isMobile, isNull, isNumber, isObject, isPc, isRegExp, isString, isSupportFontFamily, isUndefined, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, toString, tree2Array, uniq, uniqueBy };
+export { Storage, addClass, array2Tree, clearAllCookie, debounce, ensurePrefix, ensureSuffix, generateUUID, getArrayItem, getCookie, getElementSelector, getParents, getQueryParam, getQueryParams, getTargetFromTree, hasClass, isBoolean, isDate, isDefined, isFunction, isHttpOrHttps, isMobile, isNull, isNumber, isObject, isPc, isRegExp, isString, isSupportFontFamily, isUndefined, moveArrayItem, removeArrayItem, removeClass, saveFile, setCookie, swapArrayItem, throttle, toString, tree2Array, uniq, uniqueBy };
