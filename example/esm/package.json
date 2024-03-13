@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supuwoerc/utils": "^1.1.6",
     "vue": "^3.4.21"
   },
   "devDependencies": {
