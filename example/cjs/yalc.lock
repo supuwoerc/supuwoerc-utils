@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@supuwoerc/utils": {
+      "signature": "8f1ed289121b76f9d7777ce325ae96c0",
+      "file": true
+    }
+  }
+}
