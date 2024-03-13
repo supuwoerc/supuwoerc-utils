@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supuwoerc/utils": "file:.yalc/@supuwoerc/utils",
     "vue": "^3.4.21"
   },
   "devDependencies": {
