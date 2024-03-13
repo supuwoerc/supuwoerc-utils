@@ -6,7 +6,7 @@ import esbuild from 'rollup-plugin-esbuild'
 import typescript from 'rollup-plugin-typescript2'
 import babel from '@rollup/plugin-babel'
 import eslint from '@rollup/plugin-eslint'
-import { terser } from 'rollup-plugin-terser'
+// import { terser } from 'rollup-plugin-terser'
 import cleaner from 'rollup-plugin-cleaner'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -14,11 +14,6 @@ import { fileURLToPath } from 'url'
 const getPlugins = (needCleaner = false) => {
     const plugins = [
         eslint(),
-        babel({
-            babelrc: false,
-            babelHelpers: 'bundled',
-            presets: [['env', { modules: false }]],
-        }),
         resolve({
             preferBuiltins: true,
         }),
@@ -34,7 +29,11 @@ const getPlugins = (needCleaner = false) => {
         typescript(),
         commonjs(),
         esbuild(),
-        terser(),
+        babel({
+            exclude: 'node_modules/**',
+            babelHelpers: 'runtime',
+        }),
+        // terser(),
         needCleaner ? cleaner({ targets: ['./dist/'], silent: false }) : null,
     ].filter(Boolean)
     return plugins
