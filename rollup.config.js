@@ -1,4 +1,3 @@
-import dts from 'rollup-plugin-dts'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
@@ -59,14 +58,5 @@ export default [
         ],
         external: [],
         plugins,
-    })),
-    ...entries.map((input) => ({
-        input,
-        output: {
-            file: input.replace('src/', '').replace('.ts', '.d.ts'),
-            format: 'esm',
-        },
-        external: [],
-        plugins: [dts({ respectExternal: true })],
     })),
 ]

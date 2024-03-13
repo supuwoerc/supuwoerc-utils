@@ -7,7 +7,6 @@
     "types": "index.d.ts",
     "type": "module",
     "scripts": {
-        "preinstall": "npx only-allow pnpm",
         "prepare": "husky install",
         "build": "rollup -c && npm run doc",
         "build:tsc": "npx tsc",

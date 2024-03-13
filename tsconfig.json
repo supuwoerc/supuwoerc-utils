@@ -10,8 +10,13 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "baseUrl": "./",
+        "outDir": "dist",
+        "strictPropertyInitialization": false,
+        "declaration": true,
         "paths": {
             "@/*": ["src/*"]
         }
-    }
+    },
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
+    "exclude": ["node_modules", "dist", "**/*.test.ts", "**/__test__/*"]
 }
