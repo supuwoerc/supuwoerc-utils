@@ -45,7 +45,7 @@ export default [
             {
                 file: input.replace('src/', 'dist/').replace('.ts', '.umd.js'),
                 format: 'umd',
-                name: 'template.min.js',
+                name: 'supuwoerc.min.js',
             },
             {
                 file: input.replace('src/', 'dist/').replace('.ts', '.esm.js'),
